@@ -1,0 +1,7 @@
+keyvalue3.txt: 1: # Comments should be ignored
+keyvalue3.txt: 2: 
+keyvalue3.txt: 3: 
+keyvalue3.txt: 4: also ignore blank lines
+keyvalue3.txt: 5: this file contains nonexistent keys
+keyvalue3.txt: 6: all output should be error messages
+keyvalue3.txt: 7: # $Id: test3.in,v 1.1 2016-06-28 14:48:38-07 - - $

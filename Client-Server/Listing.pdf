@@ -1,0 +1,2878 @@
+%PDF-1.4
+5 0 obj
+<</Length 6 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(1)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/4)Tj
+/R12 14 Tf
+-256.358 -2.7 Td
+(sockets.h)Tj
+-123.063 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 70.4 718 Tm
+[(1:)-600(// $Id: sockets.h,v 1.2 2016-05-09 16:01:56-07 - - $)]TJ
+12 TL
+(2:)'
+T*[(3:)-600(#ifndef __SOCKET_H__)]TJ
+T*[(4:)-600(#define __SOCKET_H__)]TJ
+(5:)'
+T*[(6:)-600(#include <cstring>)]TJ
+T*[(7:)-600(#include <stdexcept>)]TJ
+T*[(8:)-600(#include <string>)]TJ
+T*[(9:)-600(#include <vector>)]TJ
+-6.6 -12 Td
+[(10:)-600(using namespace std;)]TJ
+(11:)'
+T*[(12:)-600(#include <arpa/inet.h>)]TJ
+T*[(13:)-600(#include <netdb.h>)]TJ
+T*[(14:)-600(#include <netinet/in.h>)]TJ
+T*[(15:)-600(#include <string>)]TJ
+T*[(16:)-600(#include <sys/socket.h>)]TJ
+T*[(17:)-600(#include <sys/types.h>)]TJ
+T*[(18:)-600(#include <sys/wait.h>)]TJ
+T*[(19:)-600(#include <unistd.h>)]TJ
+(20:)'
+T*[(21:)-600(//)]TJ
+T*[(22:)-600(// class base_socket:)]TJ
+T*[(23:)-600(// mostly protected and not used by applications)]TJ
+T*[(24:)-600(//)]TJ
+(25:)'
+T*[(26:)-600(class base_socket {)]TJ
+T*[(27:)-600(   private:)]TJ
+T*[(28:)-600(      static constexpr size_t MAXRECV = 0xFFFF;)]TJ
+T*[(29:)-600(      static constexpr int CLOSED_FD = -1;)]TJ
+T*[(30:)-600(      int socket_fd {CLOSED_FD};)]TJ
+T*[(31:)-600(      sockaddr_in socket_addr;)]TJ
+T*[(32:)-600(   protected:)]TJ
+T*[(33:)-600(      base_socket\(\); // only derived classes may construct)]TJ
+T*[(34:)-600(      base_socket \(const base_socket&\) = delete; // prevent copying)]TJ
+T*[(35:)-600(      base_socket& operator= \(const base_socket&\) = delete;)]TJ
+T*[(36:)-600(      ~base_socket\(\);)]TJ
+T*[(37:)-600(      // server_socket initialization)]TJ
+T*[(38:)-600(      void create\(\);)]TJ
+T*[(39:)-600(      void bind \(const in_port_t port\);)]TJ
+T*[(40:)-600(      void listen\(\) const;)]TJ
+T*[(41:)-600(      void accept \(base_socket&\) const;)]TJ
+T*[(42:)-600(      // client_socket initialization)]TJ
+T*[(43:)-600(      void connect \(const string host, const in_port_t port\);)]TJ
+T*[(44:)-600(      // accepted_socket initialization)]TJ
+T*[(45:)-600(      void set_socket_fd \(int fd\);)]TJ
+T*[(46:)-600(   public:)]TJ
+T*[(47:)-600(      void close\(\);)]TJ
+T*[(48:)-600(      ssize_t send \(const void* buffer, size_t bufsize\);)]TJ
+T*[(49:)-600(      ssize_t recv \(void* buffer, size_t bufsize\);)]TJ
+T*[(50:)-600(      void set_non_blocking \(const bool\);)]TJ
+T*[(51:)-600(      friend string to_string \(const base_socket& sock\);)]TJ
+T*[(52:)-600(};)]TJ
+(53:)'
+ET
+Q
+Q
+endstream
+endobj
+6 0 obj
+2864
+endobj
+19 0 obj
+<</Length 20 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(2)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/4)Tj
+/R12 14 Tf
+-256.358 -2.7 Td
+(sockets.h)Tj
+-123.063 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 63.8 718 Tm
+(54:)Tj
+12 TL
+T*[(55:)-600(//)]TJ
+T*[(56:)-600(// class accepted_socket)]TJ
+T*[(57:)-600(// used by server when a client connects)]TJ
+T*[(58:)-600(//)]TJ
+(59:)'
+T*[(60:)-600(class accepted_socket: public base_socket {)]TJ
+T*[(61:)-600(   public:)]TJ
+T*[(62:)-600(      accepted_socket\(\) {})]TJ
+T*[(63:)-600(      accepted_socket\(int fd\) { set_socket_fd \(fd\); })]TJ
+T*[(64:)-600(};)]TJ
+(65:)'
+T*[(66:)-600(//)]TJ
+T*[(67:)-600(// class client_socket)]TJ
+T*[(68:)-600(// used by client application to connect to server)]TJ
+T*[(69:)-600(//)]TJ
+(70:)'
+T*[(71:)-600(class client_socket: public base_socket {)]TJ
+T*[(72:)-600(   public: )]TJ
+T*[(73:)-600(      client_socket \(string host, in_port_t port\);)]TJ
+T*[(74:)-600(};)]TJ
+(75:)'
+T*[(76:)-600(//)]TJ
+T*[(77:)-600(// class server_socket)]TJ
+T*[(78:)-600(// single use class by server application)]TJ
+T*[(79:)-600(//)]TJ
+(80:)'
+T*[(81:)-600(class server_socket: public base_socket {)]TJ
+T*[(82:)-600(   public:)]TJ
+T*[(83:)-600(      server_socket \(in_port_t port\);)]TJ
+T*[(84:)-600(      void accept \(accepted_socket& sock\) {)]TJ
+T*[(85:)-600(         base_socket::accept \(sock\);)]TJ
+T*[(86:)-600(      })]TJ
+T*[(87:)-600(};)]TJ
+(88:)'
+ET
+Q
+Q
+endstream
+endobj
+20 0 obj
+1753
+endobj
+24 0 obj
+<</Length 25 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(3)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/4)Tj
+/R12 14 Tf
+-256.358 -2.7 Td
+(sockets.h)Tj
+-123.063 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 63.8 718 Tm
+(89:)Tj
+12 TL
+T*[(90:)-600(//)]TJ
+T*[(91:)-600(// class socket_error)]TJ
+T*[(92:)-600(// base class for throwing socket errors)]TJ
+T*[(93:)-600(//)]TJ
+(94:)'
+T*[(95:)-600(class socket_error: public runtime_error {)]TJ
+T*[(96:)-600(   public:)]TJ
+T*[(97:)-600(      explicit socket_error \(const string& what\): runtime_error\(what\){})]TJ
+T*[(98:)-600(};)]TJ
+(99:)'
+-6.6 -12 Td
+[(100:)-600(//)]TJ
+T*[(101:)-600(// class socket_sys_error)]TJ
+T*[(102:)-600(// subclass to record status of extern int errno variable)]TJ
+T*[(103:)-600(//)]TJ
+(104:)'
+T*[(105:)-600(class socket_sys_error: public socket_error {)]TJ
+T*[(106:)-600(   public:)]TJ
+T*[(107:)-600(      int sys_errno;)]TJ
+T*[(108:)-600(      explicit socket_sys_error \(const string& what\):)]TJ
+T*[(109:)-600(               socket_error\(what + ": " + strerror \(errno\)\),)]TJ
+T*[(110:)-600(               sys_errno\(errno\) {})]TJ
+T*[(111:)-600(};)]TJ
+(112:)'
+T*[(113:)-600(//)]TJ
+T*[(114:)-600(// class socket_h_error)]TJ
+T*[(115:)-600(// subclass to record status of extern int h_errno variable)]TJ
+T*[(116:)-600(//)]TJ
+(117:)'
+T*[(118:)-600(class socket_h_error: public socket_error {)]TJ
+T*[(119:)-600(   public:)]TJ
+T*[(120:)-600(      int host_errno;)]TJ
+T*[(121:)-600(      explicit socket_h_error \(const string& what\):)]TJ
+T*[(122:)-600(               socket_error\(what + ": " + hstrerror \(h_errno\)\),)]TJ
+T*[(123:)-600(               host_errno\(h_errno\) {})]TJ
+T*[(124:)-600(};)]TJ
+(125:)'
+ET
+Q
+Q
+endstream
+endobj
+25 0 obj
+2019
+endobj
+29 0 obj
+<</Length 30 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(4)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/4)Tj
+/R12 14 Tf
+-256.358 -2.7 Td
+(sockets.h)Tj
+-123.063 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(126:)Tj
+12 TL
+T*[(127:)-600(//)]TJ
+T*[(128:)-600(// class hostinfo)]TJ
+T*[(129:)-600(// information about a host given hostname or IPv4 address)]TJ
+T*[(130:)-600(//)]TJ
+(131:)'
+T*[(132:)-600(class hostinfo {)]TJ
+T*[(133:)-600(   public:)]TJ
+T*[(134:)-600(      const string hostname;)]TJ
+T*[(135:)-600(      const vector<string> aliases;)]TJ
+T*[(136:)-600(      const vector<in_addr> addresses;)]TJ
+T*[(137:)-600(      hostinfo \(\); // localhost)]TJ
+T*[(138:)-600(      hostinfo \(hostent*\);)]TJ
+T*[(139:)-600(      hostinfo \(const string& hostname\);)]TJ
+T*[(140:)-600(      hostinfo \(const in_addr& ipv4_addr\);)]TJ
+T*[(141:)-600(      friend string to_string \(const hostinfo&\);)]TJ
+T*[(142:)-600(};)]TJ
+(143:)'
+T*[(144:)-600(string localhost\(\);)]TJ
+T*[(145:)-600(string to_string \(const in_addr& ipv4_addr\);)]TJ
+(146:)'
+T*[(147:)-600(#endif)]TJ
+(148:)'
+ET
+Q
+Q
+endstream
+endobj
+30 0 obj
+1421
+endobj
+34 0 obj
+<</Length 35 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(1)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/1)Tj
+/R12 14 Tf
+-259.081 -2.7 Td
+(protocol.h)Tj
+-120.34 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 70.4 718 Tm
+[(1:)-600(// $Id: protocol.h,v 1.3 2016-05-09 16:01:56-07 - - $)]TJ
+12 TL
+(2:)'
+T*[(3:)-600(#ifndef __PROTOCOL__H__)]TJ
+T*[(4:)-600(#define __PROTOCOL__H__)]TJ
+(5:)'
+T*[(6:)-600(#include <cstdint>)]TJ
+T*[(7:)-600(#include <cstring>)]TJ
+T*[(8:)-600(#include <iostream>)]TJ
+T*[(9:)-600(using namespace std;)]TJ
+-6.6 -12 Td
+(10:)Tj
+T*[(11:)-600(#include "sockets.h")]TJ
+(12:)'
+T*[(13:)-600(enum class cix_command : uint8_t {)]TJ
+T*[(14:)-600(   ERROR = 0, EXIT, GET, HELP, LS, PUT, RM, FILE, LSOUT, ACK, NAK,)]TJ
+T*[(15:)-600(};)]TJ
+T*[(16:)-600(size_t constexpr FILENAME_SIZE = 59;)]TJ
+T*[(17:)-600(struct cix_header {)]TJ
+T*[(18:)-600(   uint32_t nbytes {0};)]TJ
+T*[(19:)-600(   cix_command command {cix_command::ERROR};)]TJ
+T*[(20:)-600(   char filename[FILENAME_SIZE] {};)]TJ
+T*[(21:)-600(};)]TJ
+(22:)'
+T*[(23:)-600(void send_packet \(base_socket& socket,)]TJ
+T*[(24:)-600(                  const void* buffer, size_t bufsize\);)]TJ
+(25:)'
+T*[(26:)-600(void recv_packet \(base_socket& socket, void* buffer, size_t bufsize\);)]TJ
+(27:)'
+T*[(28:)-600(ostream& operator<< \(ostream& out, const cix_header& header\);)]TJ
+(29:)'
+T*[(30:)-600(string get_cix_server_host \(const vector<string>& args, size_t index\);)]TJ
+(31:)'
+T*[(32:)-600(in_port_t get_cix_server_port \(const vector<string>& args,)]TJ
+T*[(33:)-600(                               size_t index\);)]TJ
+(34:)'
+T*[(35:)-600(#endif)]TJ
+(36:)'
+ET
+Q
+Q
+endstream
+endobj
+35 0 obj
+1955
+endobj
+39 0 obj
+<</Length 40 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(1)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/1)Tj
+/R12 14 Tf
+-263.358 -2.7 Td
+(logstream.h)Tj
+-116.063 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 70.4 718 Tm
+[(1:)-600(// $Id: logstream.h,v 1.1 2015-05-12 18:48:40-07 - - $)]TJ
+12 TL
+(2:)'
+T*[(3:)-600(//)]TJ
+T*[(4:)-600(// class logstream)]TJ
+T*[(5:)-600(// replacement for initial cout so that each call to a logstream)]TJ
+T*[(6:)-600(// will prefix the line of output with an identification string)]TJ
+T*[(7:)-600(// and a process id.  Template functions must be in header files)]TJ
+T*[(8:)-600(// and the others are trivial.)]TJ
+T*[(9:)-600(//)]TJ
+-6.6 -12 Td
+(10:)Tj
+T*[(11:)-600(#ifndef __LOGSTREAM_H__)]TJ
+T*[(12:)-600(#define __LOGSTREAM_H__)]TJ
+(13:)'
+T*[(14:)-600(#include <cassert>)]TJ
+T*[(15:)-600(#include <iostream>)]TJ
+T*[(16:)-600(#include <string>)]TJ
+T*[(17:)-600(#include <vector>)]TJ
+T*[(18:)-600(using namespace std;)]TJ
+(19:)'
+T*[(20:)-600(#include <sys/types.h>)]TJ
+T*[(21:)-600(#include <unistd.h>)]TJ
+(22:)'
+T*[(23:)-600(class logstream {)]TJ
+T*[(24:)-600(   private:)]TJ
+T*[(25:)-600(      ostream& out;)]TJ
+T*[(26:)-600(      string execname_;)]TJ
+T*[(27:)-600(   public:)]TJ
+(28:)'
+T*[(29:)-600(      // Constructor may or may not have the execname available.)]TJ
+T*[(30:)-600(      logstream \(ostream& out, const string& execname = ""\):)]TJ
+T*[(31:)-600(                 out \(out\), execname_ \(execname\) {)]TJ
+T*[(32:)-600(      })]TJ
+(33:)'
+T*[(34:)-600(      // First line of main should execname if logstream is global.)]TJ
+T*[(35:)-600(      void execname \(const string& name\) { execname_ = name; })]TJ
+T*[(36:)-600(      string execname\(\) { return execname_; })]TJ
+(37:)'
+T*[(38:)-600(      // First call should be the logstream, not cout.)]TJ
+T*[(39:)-600(      // Then forward result to the standard ostream.)]TJ
+T*[(40:)-600(      template <typename T>)]TJ
+T*[(41:)-600(      ostream& operator<< \(const T& obj\) {)]TJ
+T*[(42:)-600(         assert \(execname_.size\(\) > 0\);)]TJ
+T*[(43:)-600(         out << execname_ << "\(" << getpid\(\) << "\): " << obj;)]TJ
+T*[(44:)-600(         return out;)]TJ
+T*[(45:)-600(      })]TJ
+(46:)'
+T*[(47:)-600(};)]TJ
+(48:)'
+T*[(49:)-600(#endif)]TJ
+(50:)'
+ET
+Q
+Q
+endstream
+endobj
+40 0 obj
+2584
+endobj
+44 0 obj
+<</Length 45 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(1)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/4)Tj
+/R12 14 Tf
+-262.966 -2.7 Td
+(sockets.cpp)Tj
+-116.455 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 70.4 718 Tm
+[(1:)-600(// $Id: sockets.cpp,v 1.1 2015-05-12 18:48:40-07 - - $)]TJ
+12 TL
+(2:)'
+T*[(3:)-600(#include <cerrno>)]TJ
+T*[(4:)-600(#include <cstring>)]TJ
+T*[(5:)-600(#include <iostream>)]TJ
+T*[(6:)-600(#include <sstream>)]TJ
+T*[(7:)-600(#include <string>)]TJ
+T*[(8:)-600(using namespace std;)]TJ
+(9:)'
+-6.6 -12 Td
+[(10:)-600(#include <fcntl.h>)]TJ
+T*[(11:)-600(#include <limits.h>)]TJ
+(12:)'
+T*[(13:)-600(#include "sockets.h")]TJ
+(14:)'
+T*[(15:)-600(base_socket::base_socket\(\) {)]TJ
+T*[(16:)-600(   memset \(&socket_addr, 0, sizeof \(socket_addr\)\);)]TJ
+T*[(17:)-600(})]TJ
+(18:)'
+T*[(19:)-600(base_socket::~base_socket\(\) {)]TJ
+T*[(20:)-600(   if \(socket_fd != CLOSED_FD\) close\(\);)]TJ
+T*[(21:)-600(})]TJ
+(22:)'
+T*[(23:)-600(void base_socket::close\(\) {)]TJ
+T*[(24:)-600(   int status = ::close \(socket_fd\);)]TJ
+T*[(25:)-600(   if \(status < 0\) throw socket_sys_error \("close\(")]TJ
+T*[(26:)-600(                         + to_string\(socket_fd\) + "\)"\);)]TJ
+T*[(27:)-600(   socket_fd = CLOSED_FD;)]TJ
+T*[(28:)-600(})]TJ
+(29:)'
+T*[(30:)-600(void base_socket::create\(\) {)]TJ
+T*[(31:)-600(   socket_fd = ::socket \(AF_INET, SOCK_STREAM, 0\);)]TJ
+T*[(32:)-600(   if \(socket_fd < 0\) throw socket_sys_error \("socket"\);)]TJ
+T*[(33:)-600(   int on = 1;)]TJ
+T*[(34:)-600(   int status = ::setsockopt \(socket_fd, SOL_SOCKET, SO_REUSEADDR,)]TJ
+T*[(35:)-600(                              &on, sizeof on\);)]TJ
+T*[(36:)-600(   if \(status < 0\) throw socket_sys_error \("setsockopt"\);)]TJ
+T*[(37:)-600(})]TJ
+(38:)'
+T*[(39:)-600(void base_socket::bind \(const in_port_t port\) {)]TJ
+T*[(40:)-600(   socket_addr.sin_family = AF_INET;)]TJ
+T*[(41:)-600(   socket_addr.sin_addr.s_addr = INADDR_ANY;)]TJ
+T*[(42:)-600(   socket_addr.sin_port = htons \(port\);)]TJ
+T*[(43:)-600(   int status = ::bind \(socket_fd,)]TJ
+T*[(44:)-600(                        reinterpret_cast<sockaddr*> \(&socket_addr\),)]TJ
+T*[(45:)-600(                        sizeof socket_addr\);)]TJ
+T*[(46:)-600(   if \(status < 0\) throw socket_sys_error \("bind\(" + to_string \(port\))]TJ
+T*[(47:)-600(                                           + "\)"\);)]TJ
+T*[(48:)-600(})]TJ
+(49:)'
+T*[(50:)-600(void base_socket::listen\(\) const {)]TJ
+T*[(51:)-600(   int status = ::listen \(socket_fd, SOMAXCONN\);)]TJ
+T*[(52:)-600(   if \(status < 0\) throw socket_sys_error \("listen"\);)]TJ
+T*[(53:)-600(})]TJ
+(54:)'
+ET
+Q
+Q
+endstream
+endobj
+45 0 obj
+2933
+endobj
+49 0 obj
+<</Length 50 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(2)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/4)Tj
+/R12 14 Tf
+-262.966 -2.7 Td
+(sockets.cpp)Tj
+-116.455 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 63.8 718 Tm
+(55:)Tj
+12 TL
+T*[(56:)-600(void base_socket::accept \(base_socket& socket\) const {)]TJ
+T*[(57:)-600(   int addr_length = sizeof socket.socket_addr;)]TJ
+T*[(58:)-600(   socket.socket_fd = ::accept \(socket_fd,)]TJ
+T*[(59:)-600(                reinterpret_cast<sockaddr*> \(&socket.socket_addr\),)]TJ
+T*[(60:)-600(                reinterpret_cast<socklen_t*> \(&addr_length\)\);)]TJ
+T*[(61:)-600(   if \(socket.socket_fd < 0\) throw socket_sys_error \("accept"\);)]TJ
+T*[(62:)-600(})]TJ
+(63:)'
+T*[(64:)-600(ssize_t base_socket::send \(const void* buffer, size_t bufsize\) {)]TJ
+T*[(65:)-600(   int nbytes = ::send \(socket_fd, buffer, bufsize, MSG_NOSIGNAL\);)]TJ
+T*[(66:)-600(   if \(nbytes < 0\) throw socket_sys_error \("send"\);)]TJ
+T*[(67:)-600(   return nbytes;)]TJ
+T*[(68:)-600(})]TJ
+(69:)'
+T*[(70:)-600(ssize_t base_socket::recv \(void* buffer, size_t bufsize\) {)]TJ
+T*[(71:)-600(   memset \(buffer, 0, bufsize\);)]TJ
+T*[(72:)-600(   ssize_t nbytes = ::recv \(socket_fd, buffer, bufsize, 0\);)]TJ
+T*[(73:)-600(   if \(nbytes < 0\) throw socket_sys_error \("recv"\);)]TJ
+T*[(74:)-600(   return nbytes;)]TJ
+T*[(75:)-600(})]TJ
+(76:)'
+T*[(77:)-600(void base_socket::connect \(const string host, const in_port_t port\) {)]TJ
+T*[(78:)-600(   struct hostent *hostp = ::gethostbyname \(host.c_str\(\)\);)]TJ
+T*[(79:)-600(   if \(hostp == NULL\) throw socket_h_error \("gethostbyname\(")]TJ
+T*[(80:)-600(                            + host + "\)"\);)]TJ
+T*[(81:)-600(   socket_addr.sin_family = AF_INET;)]TJ
+T*[(82:)-600(   socket_addr.sin_port = htons \(port\);)]TJ
+T*[(83:)-600(   socket_addr.sin_addr = *reinterpret_cast<in_addr*> \(hostp->h_addr\);)]TJ
+T*[(84:)-600(   int status = ::connect \(socket_fd,)]TJ
+T*[(85:)-600(                           reinterpret_cast<sockaddr*> \(&socket_addr\),)]TJ
+T*[(86:)-600(                           sizeof \(socket_addr\)\);)]TJ
+T*[(87:)-600(   if \(status < 0\) throw socket_sys_error \("connect\(" + host + ":")]TJ
+T*[(88:)-600(                         + to_string \(port\) + "\)"\);)]TJ
+T*[(89:)-600(})]TJ
+(90:)'
+T*[(91:)-600(void base_socket::set_socket_fd \(int fd\) {)]TJ
+T*[(92:)-600(   socklen_t addrlen = sizeof socket_addr;)]TJ
+T*[(93:)-600(   int rc = getpeername \(fd, reinterpret_cast<sockaddr*> \(&socket_addr\),)]TJ
+T*[(94:)-600(                         &addrlen\);)]TJ
+T*[(95:)-600(   if \(rc < 0\) throw socket_sys_error \("set_socket_fd\(")]TJ
+T*[(96:)-600(                     + to_string \(fd\) + "\): getpeername"\);)]TJ
+T*[(97:)-600(   socket_fd = fd;)]TJ
+T*[(98:)-600(   if \(socket_addr.sin_family != AF_INET\))]TJ
+T*[(99:)-600(      throw socket_error \("address not AF_INET"\);)]TJ
+-6.6 -12 Td
+[(100:)-600(})]TJ
+(101:)'
+T*[(102:)-600(void base_socket::set_non_blocking \(const bool blocking\) {)]TJ
+T*[(103:)-600(   int opts = ::fcntl \(socket_fd, F_GETFL\);)]TJ
+T*[(104:)-600(   if \(opts < 0\) throw socket_sys_error \("fcntl"\);)]TJ
+T*[(105:)-600(   if \(blocking\) opts |= O_NONBLOCK;)]TJ
+T*[(106:)-600(            else opts &= compl O_NONBLOCK;)]TJ
+T*[(107:)-600(   opts = ::fcntl \(socket_fd, F_SETFL, opts\);)]TJ
+T*[(108:)-600(   if \(opts < 0\) throw socket_sys_error \("fcntl"\);)]TJ
+T*[(109:)-600(})]TJ
+(110:)'
+ET
+Q
+Q
+endstream
+endobj
+50 0 obj
+3745
+endobj
+54 0 obj
+<</Length 55 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(3)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/4)Tj
+/R12 14 Tf
+-262.966 -2.7 Td
+(sockets.cpp)Tj
+-116.455 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(111:)Tj
+12 TL
+T*[(112:)-600(client_socket::client_socket \(string host, in_port_t port\) {)]TJ
+T*[(113:)-600(   base_socket::create\(\);)]TJ
+T*[(114:)-600(   base_socket::connect \(host, port\);)]TJ
+T*[(115:)-600(})]TJ
+(116:)'
+T*[(117:)-600(server_socket::server_socket \(in_port_t port\) {)]TJ
+T*[(118:)-600(   base_socket::create\(\);)]TJ
+T*[(119:)-600(   base_socket::bind \(port\);)]TJ
+T*[(120:)-600(   base_socket::listen\(\);)]TJ
+T*[(121:)-600(})]TJ
+(122:)'
+T*[(123:)-600(string to_string \(const hostinfo& info\) {)]TJ
+T*[(124:)-600(   return info.hostname + " \(" + to_string \(info.addresses[0]\) + "\)";)]TJ
+T*[(125:)-600(})]TJ
+(126:)'
+T*[(127:)-600(string to_string \(const in_addr& ipv4_addr\) { )]TJ
+T*[(128:)-600(   char buffer[INET_ADDRSTRLEN];)]TJ
+T*[(129:)-600(   const char *result = ::inet_ntop \(AF_INET, &ipv4_addr,)]TJ
+T*[(130:)-600(                                     buffer, sizeof buffer\);)]TJ
+T*[(131:)-600(   if \(result == NULL\) throw socket_sys_error \("inet_ntop"\);)]TJ
+T*[(132:)-600(   return result; )]TJ
+T*[(133:)-600(})]TJ
+(134:)'
+T*[(135:)-600(string to_string \(const base_socket& sock\) {)]TJ
+T*[(136:)-600(   hostinfo info \(sock.socket_addr.sin_addr\);)]TJ
+T*[(137:)-600(   return info.hostname + " \(" + to_string \(info.addresses[0]\))]TJ
+T*[(138:)-600(          + "\) port " + to_string \(ntohs \(sock.socket_addr.sin_port\)\);)]TJ
+T*[(139:)-600(})]TJ
+(140:)'
+ET
+Q
+Q
+endstream
+endobj
+55 0 obj
+1963
+endobj
+59 0 obj
+<</Length 60 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(4)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/4)Tj
+/R12 14 Tf
+-262.966 -2.7 Td
+(sockets.cpp)Tj
+-116.455 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(141:)Tj
+12 TL
+T*[(142:)-600(string init_hostname \(hostent* host\) {)]TJ
+T*[(143:)-600(   if \(host == nullptr\) throw socket_h_error \("gethostbyname"\);)]TJ
+T*[(144:)-600(   return host->h_name;)]TJ
+T*[(145:)-600(})]TJ
+(146:)'
+T*[(147:)-600(vector<string> init_aliases \(hostent* host\) {)]TJ
+T*[(148:)-600(   if \(host == nullptr\) throw socket_h_error \("gethostbyname"\);)]TJ
+T*[(149:)-600(   vector<string> init_aliases;)]TJ
+T*[(150:)-600(   for \(char** alias = host->h_aliases; *alias != nullptr; ++alias\) {)]TJ
+T*[(151:)-600(      init_aliases.push_back \(*alias\);)]TJ
+T*[(152:)-600(   })]TJ
+T*[(153:)-600(   return init_aliases;)]TJ
+T*[(154:)-600(})]TJ
+(155:)'
+T*[(156:)-600(vector<in_addr> init_addresses \(hostent* host\) {)]TJ
+T*[(157:)-600(   vector<in_addr> init_addresses;)]TJ
+T*[(158:)-600(   if \(host == nullptr\) throw socket_h_error \("gethostbyname"\);)]TJ
+T*[(159:)-600(   for \(in_addr** addr =)]TJ
+T*[(160:)-600(                 reinterpret_cast<in_addr**> \(host->h_addr_list\);)]TJ
+T*[(161:)-600(        *addr != nullptr; ++addr\) {)]TJ
+T*[(162:)-600(      init_addresses.push_back \(**addr\);)]TJ
+T*[(163:)-600(   })]TJ
+T*[(164:)-600(   return init_addresses;)]TJ
+T*[(165:)-600(})]TJ
+(166:)'
+T*[(167:)-600(hostinfo::hostinfo \(hostent* host\):)]TJ
+T*[(168:)-600(   hostname \(init_hostname \(host\)\),)]TJ
+T*[(169:)-600(   aliases \(init_aliases \(host\)\),)]TJ
+T*[(170:)-600(   addresses \(init_addresses \(host\)\) {)]TJ
+T*[(171:)-600(})]TJ
+(172:)'
+T*[(173:)-600(hostinfo::hostinfo\(\): hostinfo \(localhost\(\)\) {)]TJ
+T*[(174:)-600(})]TJ
+(175:)'
+T*[(176:)-600(hostinfo::hostinfo \(const string& hostname\):)]TJ
+T*[(177:)-600(          hostinfo \(::gethostbyname \(hostname.c_str\(\)\)\) {)]TJ
+T*[(178:)-600(})]TJ
+(179:)'
+T*[(180:)-600(hostinfo::hostinfo \(const in_addr& ipv4_addr\):)]TJ
+T*[(181:)-600(          hostinfo \(::gethostbyaddr \(&ipv4_addr, sizeof ipv4_addr,)]TJ
+T*[(182:)-600(                                     AF_INET\)\) {)]TJ
+T*[(183:)-600(})]TJ
+(184:)'
+T*[(185:)-600(string localhost\(\) {)]TJ
+T*[(186:)-600(   char hostname[HOST_NAME_MAX] {};)]TJ
+T*[(187:)-600(   int rc = gethostname \(hostname, sizeof hostname\);)]TJ
+T*[(188:)-600(   if \(rc < 0\) throw socket_sys_error \("gethostname"\);)]TJ
+T*[(189:)-600(   return hostname;)]TJ
+T*[(190:)-600(})]TJ
+(191:)'
+ET
+Q
+Q
+endstream
+endobj
+60 0 obj
+2874
+endobj
+64 0 obj
+<</Length 65 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(1)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/2)Tj
+/R12 14 Tf
+-265.689 -2.7 Td
+(protocol.cpp)Tj
+-113.732 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 70.4 718 Tm
+[(1:)-600(// $Id: protocol.cpp,v 1.5 2016-08-11 16:31:54-07 - - $)]TJ
+12 TL
+(2:)'
+T*[(3:)-600(#include <unordered_map>)]TJ
+T*[(4:)-600(#include <string>)]TJ
+T*[(5:)-600(using namespace std;)]TJ
+(6:)'
+T*[(7:)-600(#include "protocol.h")]TJ
+(8:)'
+T*[(9:)-600(struct cix_hasher {)]TJ
+-6.6 -12 Td
+[(10:)-600(   size_t operator\(\) \(cix_command cmd\) const {)]TJ
+T*[(11:)-600(      return static_cast<uint8_t> \(cmd\);)]TJ
+T*[(12:)-600(   })]TJ
+T*[(13:)-600(};)]TJ
+(14:)'
+T*[(15:)-600(const unordered_map<cix_command,string,cix_hasher> cix_command_map {)]TJ
+T*[(16:)-600(   {cix_command::ERROR, "ERROR"},)]TJ
+T*[(17:)-600(   {cix_command::EXIT , "EXIT" },)]TJ
+T*[(18:)-600(   {cix_command::GET  , "GET"  },)]TJ
+T*[(19:)-600(   {cix_command::HELP , "HELP" },)]TJ
+T*[(20:)-600(   {cix_command::LS   , "LS"   },)]TJ
+T*[(21:)-600(   {cix_command::PUT  , "PUT"  },)]TJ
+T*[(22:)-600(   {cix_command::RM   , "RM"   },)]TJ
+T*[(23:)-600(   {cix_command::FILE , "FILE" },)]TJ
+T*[(24:)-600(   {cix_command::LSOUT, "LSOUT"},)]TJ
+T*[(25:)-600(   {cix_command::ACK  , "ACK"  },)]TJ
+T*[(26:)-600(   {cix_command::NAK  , "NAK"  },)]TJ
+T*[(27:)-600(};)]TJ
+(28:)'
+(29:)'
+T*[(30:)-600(void send_packet \(base_socket& socket,)]TJ
+T*[(31:)-600(                  const void* buffer, size_t bufsize\) {)]TJ
+T*[(32:)-600(   const char* bufptr = static_cast<const char*> \(buffer\);)]TJ
+T*[(33:)-600(   ssize_t ntosend = bufsize;)]TJ
+T*[(34:)-600(   do {)]TJ
+T*[(35:)-600(      ssize_t nbytes = socket.send \(bufptr, ntosend\);)]TJ
+T*[(36:)-600(      if \(nbytes < 0\) throw socket_sys_error \(to_string \(socket\)\);)]TJ
+T*[(37:)-600(      bufptr += nbytes;)]TJ
+T*[(38:)-600(      ntosend -= nbytes;)]TJ
+T*[(39:)-600(   }while \(ntosend > 0\);)]TJ
+T*[(40:)-600(})]TJ
+(41:)'
+T*[(42:)-600(void recv_packet \(base_socket& socket, void* buffer, size_t bufsize\) {)]TJ
+T*[(43:)-600(   char* bufptr = static_cast<char*> \(buffer\);)]TJ
+T*[(44:)-600(   ssize_t ntorecv = bufsize;)]TJ
+T*[(45:)-600(   do {)]TJ
+T*[(46:)-600(      ssize_t nbytes = socket.recv \(bufptr, ntorecv\);)]TJ
+T*[(47:)-600(      if \(nbytes < 0\) throw socket_sys_error \(to_string \(socket\)\);)]TJ
+T*[(48:)-600(      if \(nbytes == 0\) throw socket_error \(to_string \(socket\))]TJ
+T*[(49:)-600(                                           + " is closed"\);)]TJ
+T*[(50:)-600(      bufptr += nbytes;)]TJ
+T*[(51:)-600(      ntorecv -= nbytes;)]TJ
+T*[(52:)-600(   }while \(ntorecv > 0\);)]TJ
+T*[(53:)-600(})]TJ
+(54:)'
+ET
+Q
+Q
+endstream
+endobj
+65 0 obj
+3008
+endobj
+69 0 obj
+<</Length 70 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(2)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/2)Tj
+/R12 14 Tf
+-265.689 -2.7 Td
+(protocol.cpp)Tj
+-113.732 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 63.8 718 Tm
+(55:)Tj
+12 TL
+T*[(56:)-600(ostream& operator<< \(ostream& out, const cix_header& header\) {)]TJ
+T*[(57:)-600(   const auto& itor = cix_command_map.find \(header.command\);)]TJ
+T*[(58:)-600(   string code = itor == cix_command_map.end\(\) ? "?" : itor->second;)]TJ
+T*[(59:)-600(   cout << "{" << header.nbytes << "," << unsigned \(header.command\))]TJ
+T*[(60:)-600(        << "\(" << code << "\),\\"" << header.filename << "\\"}";)]TJ
+T*[(61:)-600(   return out;)]TJ
+T*[(62:)-600(}    )]TJ
+(63:)'
+T*[(64:)-600(string get_cix_server_host \(const vector<string>& args, size_t index\) {)]TJ
+T*[(65:)-600(   if \(index < args.size\(\)\) return args[index];)]TJ
+T*[(66:)-600(   char* host = getenv \("CIX_SERVER_HOST"\);)]TJ
+T*[(67:)-600(   if \(host != nullptr\) return host;)]TJ
+T*[(68:)-600(   return "localhost";)]TJ
+T*[(69:)-600(})]TJ
+(70:)'
+T*[(71:)-600(in_port_t get_cix_server_port \(const vector<string>& args,)]TJ
+T*[(72:)-600(                               size_t index\) {)]TJ
+T*[(73:)-600(   string port = "-1";)]TJ
+T*[(74:)-600(   if \(index < args.size\(\)\) port = args[index];)]TJ
+T*[(75:)-600(   else {)]TJ
+T*[(76:)-600(      char* envport = getenv \("CIX_SERVER_PORT"\);)]TJ
+T*[(77:)-600(      if \(envport != nullptr\) port = envport;)]TJ
+T*[(78:)-600(   })]TJ
+T*[(79:)-600(   return stoi \(port\);)]TJ
+T*[(80:)-600(})]TJ
+T*[(81:)-600(     )]TJ
+ET
+Q
+Q
+endstream
+endobj
+70 0 obj
+1916
+endobj
+74 0 obj
+<</Length 75 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(1)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/2)Tj
+/R12 14 Tf
+-250.912 -2.7 Td
+(cix.cpp)Tj
+-128.509 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 70.4 718 Tm
+[(1:)-600(// $Id: cix.cpp,v 1.4 2016-05-09 16:01:56-07 - - $)]TJ
+12 TL
+(2:)'
+T*[(3:)-600(#include <iostream>)]TJ
+T*[(4:)-600(#include <string>)]TJ
+T*[(5:)-600(#include <vector>)]TJ
+T*[(6:)-600(#include <unordered_map>)]TJ
+T*[(7:)-600(using namespace std;)]TJ
+(8:)'
+T*[(9:)-600(#include <libgen.h>)]TJ
+-6.6 -12 Td
+[(10:)-600(#include <sys/types.h>)]TJ
+T*[(11:)-600(#include <unistd.h>)]TJ
+(12:)'
+T*[(13:)-600(#include "protocol.h")]TJ
+T*[(14:)-600(#include "logstream.h")]TJ
+T*[(15:)-600(#include "sockets.h")]TJ
+(16:)'
+T*[(17:)-600(logstream log \(cout\);)]TJ
+T*[(18:)-600(struct cix_exit: public exception {};)]TJ
+(19:)'
+T*[(20:)-600(unordered_map<string,cix_command> command_map {)]TJ
+T*[(21:)-600(   {"exit", cix_command::EXIT},)]TJ
+T*[(22:)-600(   {"help", cix_command::HELP},)]TJ
+T*[(23:)-600(   {"ls"  , cix_command::LS  },)]TJ
+T*[(24:)-600(};)]TJ
+(25:)'
+T*[(26:)-600(void cix_help\(\) {)]TJ
+T*[(27:)-600(   static const vector<string> help = {)]TJ
+T*[(28:)-600(      "exit         - Exit the program.  Equivalent to EOF.",)]TJ
+T*[(29:)-600(      "get filename - Copy remote file to local host.",)]TJ
+T*[(30:)-600(      "help         - Print help summary.",)]TJ
+T*[(31:)-600(      "ls           - List names of files on remote server.",)]TJ
+T*[(32:)-600(      "put filename - Copy local file to remote host.",)]TJ
+T*[(33:)-600(      "rm filename  - Remove file from remote server.",)]TJ
+T*[(34:)-600(   };)]TJ
+T*[(35:)-600(   for \(const auto& line: help\) cout << line << endl;)]TJ
+T*[(36:)-600(})]TJ
+(37:)'
+T*[(38:)-600(void cix_ls \(client_socket& server\) {)]TJ
+T*[(39:)-600(   cix_header header;)]TJ
+T*[(40:)-600(   header.command = cix_command::LS;)]TJ
+T*[(41:)-600(   log << "sending header " << header << endl;)]TJ
+T*[(42:)-600(   send_packet \(server, &header, sizeof header\);)]TJ
+T*[(43:)-600(   recv_packet \(server, &header, sizeof header\);)]TJ
+T*[(44:)-600(   log << "received header " << header << endl;)]TJ
+T*[(45:)-600(   if \(header.command != cix_command::LSOUT\) {)]TJ
+T*[(46:)-600(      log << "sent LS, server did not return LSOUT" << endl;)]TJ
+T*[(47:)-600(      log << "server returned " << header << endl;)]TJ
+T*[(48:)-600(   }else {)]TJ
+T*[(49:)-600(      char buffer[header.nbytes + 1];)]TJ
+T*[(50:)-600(      recv_packet \(server, buffer, header.nbytes\);)]TJ
+T*[(51:)-600(      log << "received " << header.nbytes << " bytes" << endl;)]TJ
+T*[(52:)-600(      buffer[header.nbytes] = '\\0';)]TJ
+T*[(53:)-600(      cout << buffer;)]TJ
+T*[(54:)-600(   })]TJ
+T*[(55:)-600(})]TJ
+(56:)'
+ET
+Q
+Q
+endstream
+endobj
+75 0 obj
+3068
+endobj
+79 0 obj
+<</Length 80 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(2)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/2)Tj
+/R12 14 Tf
+-250.912 -2.7 Td
+(cix.cpp)Tj
+-128.509 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 63.8 718 Tm
+(57:)Tj
+12 TL
+T*[(58:)-600(void usage\(\) {)]TJ
+T*[(59:)-600(   cerr << "Usage: " << log.execname\(\) << " [host] [port]" << endl;)]TJ
+T*[(60:)-600(   throw cix_exit\(\);)]TJ
+T*[(61:)-600(})]TJ
+(62:)'
+T*[(63:)-600(int main \(int argc, char** argv\) {)]TJ
+T*[(64:)-600(   log.execname \(basename \(argv[0]\)\);)]TJ
+T*[(65:)-600(   log << "starting" << endl;)]TJ
+T*[(66:)-600(   vector<string> args \(&argv[1], &argv[argc]\);)]TJ
+T*[(67:)-600(   if \(args.size\(\) > 2\) usage\(\);)]TJ
+T*[(68:)-600(   string host = get_cix_server_host \(args, 0\);)]TJ
+T*[(69:)-600(   in_port_t port = get_cix_server_port \(args, 1\);)]TJ
+T*[(70:)-600(   log << to_string \(hostinfo\(\)\) << endl;)]TJ
+T*[(71:)-600(   try {)]TJ
+T*[(72:)-600(      log << "connecting to " << host << " port " << port << endl;)]TJ
+T*[(73:)-600(      client_socket server \(host, port\);)]TJ
+T*[(74:)-600(      log << "connected to " << to_string \(server\) << endl;)]TJ
+T*[(75:)-600(      for \(;;\) {)]TJ
+T*[(76:)-600(         string line;)]TJ
+T*[(77:)-600(         getline \(cin, line\);)]TJ
+T*[(78:)-600(         if \(cin.eof\(\)\) throw cix_exit\(\);)]TJ
+T*[(79:)-600(         log << "command " << line << endl;)]TJ
+T*[(80:)-600(         const auto& itor = command_map.find \(line\);)]TJ
+T*[(81:)-600(         cix_command cmd = itor == command_map.end\(\))]TJ
+T*[(82:)-600(                         ? cix_command::ERROR : itor->second;)]TJ
+T*[(83:)-600(         switch \(cmd\) {)]TJ
+T*[(84:)-600(            case cix_command::EXIT:)]TJ
+T*[(85:)-600(               throw cix_exit\(\);)]TJ
+T*[(86:)-600(               break;)]TJ
+T*[(87:)-600(            case cix_command::HELP:)]TJ
+T*[(88:)-600(               cix_help\(\);)]TJ
+T*[(89:)-600(               break;)]TJ
+T*[(90:)-600(            case cix_command::LS:)]TJ
+T*[(91:)-600(               cix_ls \(server\);)]TJ
+T*[(92:)-600(               break;)]TJ
+T*[(93:)-600(            default:)]TJ
+T*[(94:)-600(               log << line << ": invalid command" << endl;)]TJ
+T*[(95:)-600(               break;)]TJ
+T*[(96:)-600(         })]TJ
+T*[(97:)-600(      })]TJ
+T*[(98:)-600(   }catch \(socket_error& error\) {)]TJ
+T*[(99:)-600(      log << error.what\(\) << endl;)]TJ
+-6.6 -12 Td
+[(100:)-600(   }catch \(cix_exit& error\) {)]TJ
+T*[(101:)-600(      log << "caught cix_exit" << endl;)]TJ
+T*[(102:)-600(   })]TJ
+T*[(103:)-600(   log << "finishing" << endl;)]TJ
+T*[(104:)-600(   return 0;)]TJ
+T*[(105:)-600(})]TJ
+(106:)'
+ET
+Q
+Q
+endstream
+endobj
+80 0 obj
+2986
+endobj
+84 0 obj
+<</Length 85 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(1)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/4)Tj
+/R12 14 Tf
+-254.412 -2.7 Td
+(cixd.cpp)Tj
+-125.009 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 70.4 718 Tm
+[(1:)-600(// $Id: cixd.cpp,v 1.7 2016-05-09 16:01:56-07 - - $)]TJ
+12 TL
+(2:)'
+T*[(3:)-600(#include <iostream>)]TJ
+T*[(4:)-600(#include <string>)]TJ
+T*[(5:)-600(#include <vector>)]TJ
+T*[(6:)-600(using namespace std;)]TJ
+(7:)'
+T*[(8:)-600(#include <libgen.h>)]TJ
+T*[(9:)-600(#include <sys/types.h>)]TJ
+-6.6 -12 Td
+[(10:)-600(#include <unistd.h>)]TJ
+(11:)'
+T*[(12:)-600(#include "protocol.h")]TJ
+T*[(13:)-600(#include "logstream.h")]TJ
+T*[(14:)-600(#include "sockets.h")]TJ
+(15:)'
+T*[(16:)-600(logstream log \(cout\);)]TJ
+T*[(17:)-600(struct cix_exit: public exception {};)]TJ
+(18:)'
+T*[(19:)-600(void reply_ls \(accepted_socket& client_sock, cix_header& header\) {)]TJ
+T*[(20:)-600(   const char* ls_cmd = "ls -l 2>&1";)]TJ
+T*[(21:)-600(   FILE* ls_pipe = popen \(ls_cmd, "r"\);)]TJ
+T*[(22:)-600(   if \(ls_pipe == NULL\) { )]TJ
+T*[(23:)-600(      log << "ls -l: popen failed: " << strerror \(errno\) << endl;)]TJ
+T*[(24:)-600(      header.command = cix_command::NAK;)]TJ
+T*[(25:)-600(      header.nbytes = errno;)]TJ
+T*[(26:)-600(      send_packet \(client_sock, &header, sizeof header\);)]TJ
+T*[(27:)-600(      return;)]TJ
+T*[(28:)-600(   })]TJ
+T*[(29:)-600(   string ls_output;)]TJ
+T*[(30:)-600(   char buffer[0x1000];)]TJ
+T*[(31:)-600(   for \(;;\) {)]TJ
+T*[(32:)-600(      char* rc = fgets \(buffer, sizeof buffer, ls_pipe\);)]TJ
+T*[(33:)-600(      if \(rc == nullptr\) break;)]TJ
+T*[(34:)-600(      ls_output.append \(buffer\);)]TJ
+T*[(35:)-600(   })]TJ
+T*[(36:)-600(   int status = pclose \(ls_pipe\);)]TJ
+T*[(37:)-600(   if \(status < 0\) log << ls_cmd << ": " << strerror \(errno\) << endl;)]TJ
+T*[(38:)-600(              else log << ls_cmd << ": exit " << \(status >> 8\))]TJ
+T*[(39:)-600(                       << " signal " << \(status & 0x7F\))]TJ
+T*[(40:)-600(                       << " core " << \(status >> 7 & 1\) << endl;)]TJ
+T*[(41:)-600(   header.command = cix_command::LSOUT;)]TJ
+T*[(42:)-600(   header.nbytes = ls_output.size\(\);)]TJ
+T*[(43:)-600(   memset \(header.filename, 0, FILENAME_SIZE\);)]TJ
+T*[(44:)-600(   log << "sending header " << header << endl;)]TJ
+T*[(45:)-600(   send_packet \(client_sock, &header, sizeof header\);)]TJ
+T*[(46:)-600(   send_packet \(client_sock, ls_output.c_str\(\), ls_output.size\(\)\);)]TJ
+T*[(47:)-600(   log << "sent " << ls_output.size\(\) << " bytes" << endl;)]TJ
+T*[(48:)-600(})]TJ
+(49:)'
+ET
+Q
+Q
+endstream
+endobj
+85 0 obj
+2906
+endobj
+89 0 obj
+<</Length 90 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(2)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/4)Tj
+/R12 14 Tf
+-254.412 -2.7 Td
+(cixd.cpp)Tj
+-125.009 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 63.8 718 Tm
+(50:)Tj
+12 TL
+T*[(51:)-600(void run_server \(accepted_socket& client_sock\) {)]TJ
+T*[(52:)-600(   log.execname \(log.execname\(\) + "-server"\);)]TJ
+T*[(53:)-600(   log << "connected to " << to_string \(client_sock\) << endl;)]TJ
+T*[(54:)-600(   try {   )]TJ
+T*[(55:)-600(      for \(;;\) {)]TJ
+T*[(56:)-600(         cix_header header; )]TJ
+T*[(57:)-600(         recv_packet \(client_sock, &header, sizeof header\);)]TJ
+T*[(58:)-600(         log << "received header " << header << endl;)]TJ
+T*[(59:)-600(         switch \(header.command\) {)]TJ
+T*[(60:)-600(            case cix_command::LS: )]TJ
+T*[(61:)-600(               reply_ls \(client_sock, header\);)]TJ
+T*[(62:)-600(               break;)]TJ
+T*[(63:)-600(            default:)]TJ
+T*[(64:)-600(               log << "invalid header from client:" << header << endl;)]TJ
+T*[(65:)-600(               break;)]TJ
+T*[(66:)-600(         })]TJ
+T*[(67:)-600(      })]TJ
+T*[(68:)-600(   }catch \(socket_error& error\) {)]TJ
+T*[(69:)-600(      log << error.what\(\) << endl;)]TJ
+T*[(70:)-600(   }catch \(cix_exit& error\) {)]TJ
+T*[(71:)-600(      log << "caught cix_exit" << endl;)]TJ
+T*[(72:)-600(   })]TJ
+T*[(73:)-600(   log << "finishing" << endl;)]TJ
+T*[(74:)-600(   throw cix_exit\(\);)]TJ
+T*[(75:)-600(})]TJ
+(76:)'
+T*[(77:)-600(void fork_cixserver \(server_socket& server, accepted_socket& accept\) {)]TJ
+T*[(78:)-600(   pid_t pid = fork\(\);)]TJ
+T*[(79:)-600(   if \(pid == 0\) { // child)]TJ
+T*[(80:)-600(      server.close\(\);)]TJ
+T*[(81:)-600(      run_server \(accept\);)]TJ
+T*[(82:)-600(      throw cix_exit\(\);)]TJ
+T*[(83:)-600(   }else {)]TJ
+T*[(84:)-600(      accept.close\(\);)]TJ
+T*[(85:)-600(      if \(pid < 0\) {)]TJ
+T*[(86:)-600(         log << "fork failed: " << strerror \(errno\) << endl;)]TJ
+T*[(87:)-600(      }else {)]TJ
+T*[(88:)-600(         log << "forked cixserver pid " << pid << endl;)]TJ
+T*[(89:)-600(      })]TJ
+T*[(90:)-600(   })]TJ
+T*[(91:)-600(})]TJ
+(92:)'
+ET
+Q
+Q
+endstream
+endobj
+90 0 obj
+2497
+endobj
+94 0 obj
+<</Length 95 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(3)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/4)Tj
+/R12 14 Tf
+-254.412 -2.7 Td
+(cixd.cpp)Tj
+-125.009 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 63.8 718 Tm
+(93:)Tj
+12 TL
+T*[(94:)-600(void reap_zombies\(\) {)]TJ
+T*[(95:)-600(   for \(;;\) {)]TJ
+T*[(96:)-600(      int status;)]TJ
+T*[(97:)-600(      pid_t child = waitpid \(-1, &status, WNOHANG\);)]TJ
+T*[(98:)-600(      if \(child <= 0\) break;)]TJ
+T*[(99:)-600(      log << "child " << child)]TJ
+-6.6 -12 Td
+[(100:)-600(          << " exit " << \(status >> 8\))]TJ
+T*[(101:)-600(          << " signal " << \(status & 0x7F\))]TJ
+T*[(102:)-600(          << " core " << \(status >> 7 & 1\) << endl;)]TJ
+T*[(103:)-600(   })]TJ
+T*[(104:)-600(})]TJ
+(105:)'
+T*[(106:)-600(void signal_handler \(int signal\) {)]TJ
+T*[(107:)-600(   log << "signal_handler: caught " << strsignal \(signal\) << endl;)]TJ
+T*[(108:)-600(   reap_zombies\(\);)]TJ
+T*[(109:)-600(})]TJ
+(110:)'
+T*[(111:)-600(void signal_action \(int signal, void \(*handler\) \(int\)\) {)]TJ
+T*[(112:)-600(   struct sigaction action;)]TJ
+T*[(113:)-600(   action.sa_handler = handler;)]TJ
+T*[(114:)-600(   sigfillset \(&action.sa_mask\);)]TJ
+T*[(115:)-600(   action.sa_flags = 0;)]TJ
+T*[(116:)-600(   int rc = sigaction \(signal, &action, nullptr\);)]TJ
+T*[(117:)-600(   if \(rc < 0\) log << "sigaction " << strsignal \(signal\) << " failed: ")]TJ
+T*[(118:)-600(                   << strerror \(errno\) << endl;)]TJ
+T*[(119:)-600(})]TJ
+(120:)'
+ET
+Q
+Q
+endstream
+endobj
+95 0 obj
+1839
+endobj
+99 0 obj
+<</Length 100 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(4)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/4)Tj
+/R12 14 Tf
+-254.412 -2.7 Td
+(cixd.cpp)Tj
+-125.009 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 57.2 718 Tm
+(121:)Tj
+12 TL
+T*[(122:)-600(int main \(int argc, char** argv\) {)]TJ
+T*[(123:)-600(   log.execname \(basename \(argv[0]\)\);)]TJ
+T*[(124:)-600(   log << "starting" << endl;)]TJ
+T*[(125:)-600(   vector<string> args \(&argv[1], &argv[argc]\);)]TJ
+T*[(126:)-600(   signal_action \(SIGCHLD, signal_handler\);)]TJ
+T*[(127:)-600(   in_port_t port = get_cix_server_port \(args, 0\);)]TJ
+T*[(128:)-600(   try {)]TJ
+T*[(129:)-600(      server_socket listener \(port\);)]TJ
+T*[(130:)-600(      for \(;;\) {)]TJ
+T*[(131:)-600(         log << to_string \(hostinfo\(\)\) << " accepting port ")]TJ
+T*[(132:)-600(             << to_string \(port\) << endl;)]TJ
+T*[(133:)-600(         accepted_socket client_sock;)]TJ
+T*[(134:)-600(         for \(;;\) {)]TJ
+T*[(135:)-600(            try {)]TJ
+T*[(136:)-600(               listener.accept \(client_sock\);)]TJ
+T*[(137:)-600(               break;)]TJ
+T*[(138:)-600(            }catch \(socket_sys_error& error\) {)]TJ
+T*[(139:)-600(               switch \(error.sys_errno\) {)]TJ
+T*[(140:)-600(                  case EINTR:)]TJ
+T*[(141:)-600(                     log << "listener.accept caught ")]TJ
+T*[(142:)-600(                         << strerror \(EINTR\) << endl;)]TJ
+T*[(143:)-600(                     break;)]TJ
+T*[(144:)-600(                  default:)]TJ
+T*[(145:)-600(                     throw;)]TJ
+T*[(146:)-600(               })]TJ
+T*[(147:)-600(            })]TJ
+T*[(148:)-600(         })]TJ
+T*[(149:)-600(         log << "accepted " << to_string \(client_sock\) << endl;)]TJ
+T*[(150:)-600(         try {)]TJ
+T*[(151:)-600(            fork_cixserver \(listener, client_sock\);)]TJ
+T*[(152:)-600(            reap_zombies\(\);)]TJ
+T*[(153:)-600(         }catch \(socket_error& error\) {)]TJ
+T*[(154:)-600(            log << error.what\(\) << endl;)]TJ
+T*[(155:)-600(         })]TJ
+T*[(156:)-600(      })]TJ
+T*[(157:)-600(   }catch \(socket_error& error\) {)]TJ
+T*[(158:)-600(      log << error.what\(\) << endl;)]TJ
+T*[(159:)-600(   }catch \(cix_exit& error\) {)]TJ
+T*[(160:)-600(      log << "caught cix_exit" << endl;)]TJ
+T*[(161:)-600(   })]TJ
+T*[(162:)-600(   log << "finishing" << endl;)]TJ
+T*[(163:)-600(   return 0;)]TJ
+T*[(164:)-600(})]TJ
+(165:)'
+ET
+Q
+Q
+endstream
+endobj
+100 0 obj
+2755
+endobj
+104 0 obj
+<</Length 105 0 R>>
+stream
+q 0.1 0 0 0.1 0 0 cm
+/R7 gs
+0 G
+380 240 5360 7080 re
+S
+5 w
+0 0 0 RG
+380 7320 m
+5700 7320 l
+380 7320 m
+1100 7320 l
+1100 7680 l
+380 7680 l
+h
+S
+0 0 0 rg
+q
+10 0 0 10 0 0 cm BT
+/R8 12 Tf
+1 0 0 1 52.6641 752 Tm
+(08/02/17)Tj
+-0.659766 -12.8 Td
+(14:33:15)Tj
+ET
+Q
+4980 7320 720 360 re
+S
+q
+10 0 0 10 0 0 cm BT
+/R10 28.8 Tf
+1 0 0 1 518.488 739.2 Tm
+(1)Tj
+/R10 18 Tf
+16.0129 0 Td
+(/1)Tj
+/R12 14 Tf
+-255.77 -2.7 Td
+(Makefile)Tj
+-123.652 18 Td
+($cmps109-wm/Assignments/asg5-client-server/code/)Tj
+ET
+Q
+0 g
+q
+10 0 0 10 0 0 cm BT
+/R14 11 Tf
+1 0 0 1 70.4 718 Tm
+[(1:)-600(# $Id: Makefile,v 1.7 2016-07-25 20:09:21-07 - - $)]TJ
+12 TL
+(2:)'
+T*[(3:)-600(WARN     = -Wall -Wextra -Wold-style-cast)]TJ
+T*[(4:)-600(GPP      = g++ -std=gnu++14 -g -O0 ${WARN})]TJ
+(5:)'
+T*[(6:)-600(DEPFILE  = Makefile.dep)]TJ
+T*[(7:)-600(HEADERS  = sockets.h protocol.h logstream.h)]TJ
+T*[(8:)-600(CPPLIBS  = sockets.cpp protocol.cpp )]TJ
+T*[(9:)-600(CPPSRCS  = ${CPPLIBS} cix.cpp cixd.cpp)]TJ
+-6.6 -12 Td
+[(10:)-600(LIBOBJS  = ${CPPLIBS:.cpp=.o})]TJ
+T*[(11:)-600(CIXOBJS  = cix.o ${LIBOBJS})]TJ
+T*[(12:)-600(CIXDOBJS = cixd.o ${LIBOBJS})]TJ
+T*[(13:)-600(OBJECTS  = ${CIXOBJS} ${CIXDOBJS})]TJ
+T*[(14:)-600(EXECBINS = cix cixd)]TJ
+T*[(15:)-600(LISTING  = Listing.ps)]TJ
+T*[(16:)-600(SOURCES  = ${HEADERS} ${CPPSRCS} Makefile)]TJ
+(17:)'
+T*[(18:)-600(all: ${DEPFILE} ${EXECBINS})]TJ
+(19:)'
+T*[(20:)-600(cix: ${CIXOBJS})]TJ
+T*[(21:)-600(        ${GPP} -o $@ ${CIXOBJS})]TJ
+(22:)'
+T*[(23:)-600(cixd: ${CIXDOBJS})]TJ
+T*[(24:)-600(        ${GPP} -o $@ ${CIXDOBJS})]TJ
+(25:)'
+T*[(26:)-600(%.o: %.cpp)]TJ
+T*[(27:)-600(        ${GPP} -c $<)]TJ
+T*[(28:)-600(        - cpplint.py.perl $<)]TJ
+(29:)'
+T*[(30:)-600(ci: ${SOURCES})]TJ
+T*[(31:)-600(        - checksource ${SOURCES})]TJ
+T*[(32:)-600(        - cpplint.py.perl ${CPPSRCS})]TJ
+T*[(33:)-600(        - cid + ${SOURCES})]TJ
+(34:)'
+T*[(35:)-600(lis: all ${SOURCES} ${DEPFILE})]TJ
+T*[(36:)-600(        mkpspdf ${LISTING} ${SOURCES} ${DEPFILE})]TJ
+(37:)'
+T*[(38:)-600(clean:)]TJ
+T*[(39:)-600(        - rm ${LISTING} ${LISTING:.ps=.pdf} ${OBJECTS} Makefile.dep)]TJ
+(40:)'
+T*[(41:)-600(spotless: clean)]TJ
+T*[(42:)-600(        - rm ${EXECBINS})]TJ
+(43:)'
+T*[(44:)-600(dep:)]TJ
+T*[(45:)-600(        - rm ${DEPFILE})]TJ
+T*[(46:)-600(        make --no-print-directory ${DEPFILE})]TJ
+(47:)'
+T*[(48:)-600(${DEPFILE}:)]TJ
+T*[(49:)-600(        ${GPP} -MM ${CPPSRCS} >${DEPFILE})]TJ
+(50:)'
+T*[(51:)-600(again: ${SOURCES})]TJ
+T*[(52:)-600(        make --no-print-directory spotless ci all lis)]TJ
+(53:)'
+T*[(54:)-600(include ${DEPFILE})]TJ
+(55:)'
+ET
+Q
+Q
+endstream
+endobj
+105 0 obj
+2542
+endobj
+4 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 16 0 R
+/Font 17 0 R
+>>
+/Contents 5 0 R
+>>
+endobj
+18 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 21 0 R
+/Font 22 0 R
+>>
+/Contents 19 0 R
+>>
+endobj
+23 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 26 0 R
+/Font 27 0 R
+>>
+/Contents 24 0 R
+>>
+endobj
+28 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 31 0 R
+/Font 32 0 R
+>>
+/Contents 29 0 R
+>>
+endobj
+33 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 36 0 R
+/Font 37 0 R
+>>
+/Contents 34 0 R
+>>
+endobj
+38 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 41 0 R
+/Font 42 0 R
+>>
+/Contents 39 0 R
+>>
+endobj
+43 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 46 0 R
+/Font 47 0 R
+>>
+/Contents 44 0 R
+>>
+endobj
+48 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 51 0 R
+/Font 52 0 R
+>>
+/Contents 49 0 R
+>>
+endobj
+53 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 56 0 R
+/Font 57 0 R
+>>
+/Contents 54 0 R
+>>
+endobj
+58 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 61 0 R
+/Font 62 0 R
+>>
+/Contents 59 0 R
+>>
+endobj
+63 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 66 0 R
+/Font 67 0 R
+>>
+/Contents 64 0 R
+>>
+endobj
+68 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 71 0 R
+/Font 72 0 R
+>>
+/Contents 69 0 R
+>>
+endobj
+73 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 76 0 R
+/Font 77 0 R
+>>
+/Contents 74 0 R
+>>
+endobj
+78 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 81 0 R
+/Font 82 0 R
+>>
+/Contents 79 0 R
+>>
+endobj
+83 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 86 0 R
+/Font 87 0 R
+>>
+/Contents 84 0 R
+>>
+endobj
+88 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 91 0 R
+/Font 92 0 R
+>>
+/Contents 89 0 R
+>>
+endobj
+93 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 96 0 R
+/Font 97 0 R
+>>
+/Contents 94 0 R
+>>
+endobj
+98 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 101 0 R
+/Font 102 0 R
+>>
+/Contents 99 0 R
+>>
+endobj
+103 0 obj
+<</Type/Page/MediaBox [0 0 612 792]
+/Parent 3 0 R
+/Resources<</ProcSet[/PDF /Text]
+/ExtGState 106 0 R
+/Font 107 0 R
+>>
+/Contents 104 0 R
+>>
+endobj
+3 0 obj
+<< /Type /Pages /Kids [
+4 0 R
+18 0 R
+23 0 R
+28 0 R
+33 0 R
+38 0 R
+43 0 R
+48 0 R
+53 0 R
+58 0 R
+63 0 R
+68 0 R
+73 0 R
+78 0 R
+83 0 R
+88 0 R
+93 0 R
+98 0 R
+103 0 R
+] /Count 19
+>>
+endobj
+1 0 obj
+<</Type /Catalog /Pages 3 0 R
+/Metadata 113 0 R
+>>
+endobj
+7 0 obj
+<</Type/ExtGState
+/OPM 1>>endobj
+16 0 obj
+<</R7
+7 0 R>>
+endobj
+17 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+21 0 obj
+<</R7
+7 0 R>>
+endobj
+22 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+26 0 obj
+<</R7
+7 0 R>>
+endobj
+27 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+31 0 obj
+<</R7
+7 0 R>>
+endobj
+32 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+36 0 obj
+<</R7
+7 0 R>>
+endobj
+37 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+41 0 obj
+<</R7
+7 0 R>>
+endobj
+42 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+46 0 obj
+<</R7
+7 0 R>>
+endobj
+47 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+51 0 obj
+<</R7
+7 0 R>>
+endobj
+52 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+56 0 obj
+<</R7
+7 0 R>>
+endobj
+57 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+61 0 obj
+<</R7
+7 0 R>>
+endobj
+62 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+66 0 obj
+<</R7
+7 0 R>>
+endobj
+67 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+71 0 obj
+<</R7
+7 0 R>>
+endobj
+72 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+76 0 obj
+<</R7
+7 0 R>>
+endobj
+77 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+81 0 obj
+<</R7
+7 0 R>>
+endobj
+82 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+86 0 obj
+<</R7
+7 0 R>>
+endobj
+87 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+91 0 obj
+<</R7
+7 0 R>>
+endobj
+92 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+96 0 obj
+<</R7
+7 0 R>>
+endobj
+97 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+101 0 obj
+<</R7
+7 0 R>>
+endobj
+102 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+106 0 obj
+<</R7
+7 0 R>>
+endobj
+107 0 obj
+<</R14
+14 0 R/R8
+8 0 R/R12
+12 0 R/R10
+10 0 R>>
+endobj
+14 0 obj
+<</BaseFont/IKQQEY+Courier-Bold/FontDescriptor 15 0 R/Type/Font
+/FirstChar 32/LastChar 126/Widths[
+600 600 600 600 600 600 600 600 600 600 600 600 600 600 600 600
+600 600 600 600 600 600 600 600 600 600 600 600 600 600 600 600
+600 600 600 600 600 600 600 600 600 600 600 600 600 600 600 600
+600 0 600 600 600 600 600 600 600 600 600 600 600 600 0 600
+0 600 600 600 600 600 600 600 600 600 600 600 600 600 600 600
+600 600 600 600 600 600 600 600 600 600 600 600 600 600 600]
+/Encoding 112 0 R/Subtype/Type1>>
+endobj
+112 0 obj
+<</Type/Encoding/BaseEncoding/WinAnsiEncoding/Differences[
+39/quoteright
+126/tilde]>>
+endobj
+8 0 obj
+<</BaseFont/LOLTIH+Times-Bold/FontDescriptor 9 0 R/Type/Font
+/FirstChar 47/LastChar 58/Widths[ 278
+500 500 500 500 500 500 0 500 500 0 333]
+/Encoding/WinAnsiEncoding/Subtype/Type1>>
+endobj
+12 0 obj
+<</BaseFont/YYBCEB+Times-Roman/FontDescriptor 13 0 R/Type/Font
+/FirstChar 36/LastChar 120/Widths[ 500 0 0 0 0 0 0 0 0 333 250 278
+500 500 0 0 0 500 0 0 0 500 0 0 0 0 0 0
+0 722 0 0 0 0 0 0 0 0 0 0 0 889 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 444 0 444 500 444 333 500 500 278 0 500 278 778 500 500
+500 0 333 389 278 0 500 722 500]
+/Encoding/WinAnsiEncoding/Subtype/Type1>>
+endobj
+10 0 obj
+<</BaseFont/ZRKBEE+Helvetica-Bold/FontDescriptor 11 0 R/Type/Font
+/FirstChar 47/LastChar 52/Widths[ 278
+0 556 556 556 556]
+/Encoding/WinAnsiEncoding/Subtype/Type1>>
+endobj
+15 0 obj
+<</Type/FontDescriptor/FontName/IKQQEY+Courier-Bold/FontBBox[-21 -205 623 695]/Flags 7
+/Ascent 695
+/CapHeight 597
+/Descent -205
+/ItalicAngle 0
+/StemV 150
+/AvgWidth 600
+/MaxWidth 600
+/MissingWidth 600
+/XHeight 451
+/CharSet(/A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/R/S/T/U/V/W/X/Y/Z/a/ampersand/asterisk/at/b/backslash/bar/braceleft/braceright/bracketleft/bracketright/c/colon/comma/d/dollar/e/eight/equal/exclam/f/five/four/g/greater/h/hyphen/i/j/k/l/less/m/n/nine/numbersign/o/one/p/parenleft/parenright/percent/period/plus/q/question/quotedbl/quoteright/r/s/semicolon/seven/six/slash/space/t/three/tilde/two/u/underscore/v/w/x/y/z/zero)/FontFile3 108 0 R>>
+endobj
+108 0 obj
+<</Filter[/ASCII85Decode
+/FlateDecode]
+/Subtype/Type1C/Length 10482>>stream
+Gatm^$!:,-rq6e_Rlf29CV1Fi9gGc1IB+B(D-a2b_gMR(MMMhPY]!)U.hE1V+:02:&@N-\&JSJH
+;<qDP:9Cq+F_msSVmW(=N7GB"qAoE^^6=5S#kU@-pO&%CP'cY#I`qV8hqtsq_TRR>Yuo=*(FCL8
+_@gH3'1VG3Hn^Hra'rBK?s`@s5p9#eT<;b?6ED[ZomHaX()ZHGL3lq64Ql<59_"&1bE5Wn!o_71
+V<&S\$ffYK"Q9qa^9;D.]OT*kC"%DnRIfR1Du/lrG@0lG&XFgNO7f&sIn9s)(<4=H`?r:[],]]K
+*A%Qi%?F8FMb*ILfs`VNTB!3D+jj^q^+0B7K"*dKMXP?(VteQ.4aYH_r,'0_+D,P4U@3D:XO)0^
+Y@@t=4s:2@f@&<BbCfo>irW<#^RMG_EE1G6afA@kUkYsFgUf($FFD.ms0)t02hjh=(2Si_)RV/C
+Hd%LUdt;;WI"0^`d2_[]ah66g^Z#&k^BNZTS?VM5[jE_ro_.@iG@"K9A]`GpB`p/^fKd)@9HZ5+
+$].rA9uL8S6t.r,M:b-g-FOPj&_i*j`-,T>Z%JE5lm.l/dtn'63AH-l,ZYI4M'1e`@MZ53QqaY+
+jq-tnX,2,?)WGmK/MWl"8%_-h-iQa5'+9W*M<B_>L_7Qr@L;Q+nKP5r(e"Q@>[fWHR\5Kl`(L5k
+n0U7'+2X3Y96_'/#WD3.5n^@4*.g[W6l*Tdr^-Am_[&Kd3FWRTS-[-[a#>&NmIb_Sj1Hb[o9e,F
+[O6DDq];`uKMrS-lRt99edhT9\Z^eW)ue1H'1S'.MFL?f@H7f_?]9:CNj<V:E.8h?C@lGOJc96)
+dP8MOPjeR.pNJfeZ+R@!N8$J_gR"sJ=o:l:n#sBrpgS[Ss17Z$h]Ufuh`Td0IQi3`Ic$+Y)m:4\
+FFn,Aj&Zn#rV9Ij`*!c&-N6&?lD3.Uf#_:6p0`d8PkM't;bp)V5Ag;)ZdYP=^2*T&B2"_5H02E#
+`O!Q>5EB3$#51]5\AZg+B/-U-\TIKkFqPZ'P^.;7=>%o")*ju4QcaGC6Z*@++J5_<V&F2ZR8.B!
+AmeN$Aa3f0\OHj$&<lC=U<,CHZSK(iqcT=nWE3:)FcAeq]!r&3N\C:>`hjr\161t!cbMj>Z=8M7
+%T#`-od)L)Yg[7qGo(@03u2X`?eZeWU],+c;>-?d-f>JH2*HRk!&]k<@rjHS5ob]\auGPS+dn4O
+!#00nG5#%U>*2+Rn(rqgHWIi*oZXBd\;')$3HMLRgbJ5s/LcdB<c[m[Vao_-T&BXLheK.1jRR^]
+\:t)<V]?40(g42SF>qhZ"QH(^b.1WOc,*oqfL`t@d/Qpk<B4a^!@DBG`')cn1)Ymg(!94\63P4L
+=eBDlbX=#Nl&\n`e<PV8TAHs^!B$?GJio.VhJ#YpHE.t07I.Y7657MtT:?\a1cf!AEc':3^Msd]
+Q4#Oa^u=.2d-q<`C-%1@EB3!Gq\iAT_t'?[Yf$!Sk[u"1UE*t#2e.dGqP0SsPDN%)p):A=Y#QB]
+X7;.H83#u(oq/An3gR8E\]jU+MPcE=s'G1$@e3DnpN$tXbl+&*V^t]s!ih3d,<m+C5p+C[_hk)'
+J^M[:LlJ]S3$++?*!M>E=u""peLE>p-]SWPUp&e:eVWXs_Tk2WLH"Uln,fqe7^"!/,ijs)5k7q=
+pd[N&@j$cP-ch@@2js[=k/O5j<c4?fGNG[I^USRZHbOQZ9W3XK$h+^gTpg]DTU`,-&*;HD6%d?\
+nm]/I<O9c"^:R,i("LE<TU2pa?FH.:b!<A`<E[sScJ.OAT^6e9'igg]c@^$Z3?([t_hf<Xa%DmD
+bJ9\t.k!UNCcYteY9EFV-$Emd?!nQ#KRGSEftq!f\MpWp,IBPPTp]R2)M)5XYNDMBn-.kZhtcp)
+o#B_&k*cW-W2AjCWoGk@ZDCH*S.G\".R>&SfF95cr1+dMrcQMiTAB=>\OA-Rj40([R>$J&&iE:`
+6E;f?8q@;5C%\=A3_]pZV>e:3[<Yr@NoJ>:PDaPIj"`lc.Polm/h"XJ3Hh@.ZTb_5:2J<h+44^g
+O,GVP^uOtZE$V5,r/?$TLPS7uq'Q`m_=>mAT\'_Y2dVl_r'gRZb]-Xc=#crY/gIEIThkM7SQ:nf
+iW6HDKN"6\\fEWLXf:tB(&L9Bp$V[,q=FMGD`(S&elVFDQ6tEbi!OCWCM3TVLEaC^?os@#BFOe$
+Y3G-j%S4qp$KZT=8T*tP^(/XiT>4GHFM<[VT$.>S,og=;.otoqAJmPA6m,OOZBR,P'I6Mu3B\$`
+A(96r5I8gI8a0*tCuN"^]ncM$>cBo8[c:?3<H+EgaanMp(OR8uih6X`Dj4'q<U!"up+@uBE1mO"
+*&oK1(f;q?]ao9`_&T[81I;p!*>P!M!VCS(P9$7"HSWdbe!mR)ASOYp[>Q=JSVOF^T/[T@r[+oh
+Pk9UlSu[\$9a2XJ0s/@.qG*E4`h8HTB1)[[';i4EHo)SHdf9.t?q"$uG\f-"+\a'e!?j_$:T0)O
+8o"H%TW+Z^^<0X,Ui5_q#Ft:f#B&D<+jRmj0SfWs8V0?i]MPaES$>3#h#>Y&.g=TGTE>@C\f=q#
+GoXh#m"8!u"$'+;jVo%61'9N2@G*H^e8)G,7_u'0gGf9B?4SH,EI4@]\"pR.Nr(=?"fIQW<isQr
+ai[#S!)Uf`G]Es!;EKuc'`q3DT4]6g#6muD)nH=pE5b0(a:+/rX)^1pB3_"N);G`5+k`alA_:.t
+FPRM_3Aa,H5+G;eB7KaG__mG6N'O"@QAI8,)Z`r??#;)n)H+fWBPWhU!X++ZN41_;2*)*a?&/$e
+D=Ag1'H::dQLu)"mn<_:_/"&;lfIOt3t*`c#//LD\t'i(_hnI!`t(u3MYccM5"KOI+t_,W]I+1:
+P<JTs!VCn>d)2'8!H6>>A>:,K$^e;I"($R(?s5Q2@S;qfY"Vd`p6G*s#!+GWroU[*>n2S&@f?V4
+arIan;GenER8hW.e@"$t9!,?\q*C,t*\ReG=/'Y&=!Yg$P^8H`;%?3L[\-%?Q?G`@&MKFKna]a%
+n]0LiiQ%<Q9:"enl;[SB6;`k=#BWr@.J&t&:%D7&cO&gfmP3!Tr<+M58ba?Ddi-K(f$+k5H+"\o
++2tQD_\Fm!Q"4":5"-#b#6N$Np!Hg^&TET<c2jK%cDIInL(gEli&9dmejjDK!@Ui\jh7%ae`Rb/
+4SY'AC+uONPtm[C!LY,^0r-S/A/fb,X@_'YA,Gu`V-l$cJcjl3?.H[PFMKi?rrHJYZXs.t8\#7:
+A;=Z7)'s8&7DeM,\CuojI=*>`E?;L`55?aGb-S<LAK[S5(Vpt+q;!`I#XskogtE7[ZZj[EVg4'B
+L/Li8fi"j1Ue8$WK=<ok8@fgp!F]tKWN'(&"-kJS#35))_8='Z1",Iq$Pe[!`1-jJ-?HMjk6I]V
+h'>8)E64u/MK2PN0Dm.+oFA$73_(JH6fV#h*+)1d!*hbn)tTJQ@k5usEiC[oPJ6`L"C>O$T<-CB
+s2<:1OUIS#9PIU(RdA-1]-(`oB'J**>sn&4RZJBeW"$W/dsTeuCNKMEeKu<dPiR1\n=<rs`LaN*
+`l+X?-bt#SB^@iQ"oXq>QVY5<EDQOSOXhcDIe6;WksL-Oq16E#%1A6.\<@-T@BV4B:EH\p2`V-'
+GE4Y=FO>"k*0TLD#TBsU'YA>21?LD3ng:!*,!E7O8ba(tNr9+\JD[U:YD',F`XP(e^72`CR/Of1
+V:[/`fH(h6%+Z(+W.&E,^us'Q&d7C?;c8dA_^48,!!KmK.dAAd0^JS?&Jm.A;s4\9pUgHkH4aBd
+(G&'\::?W&K9)s;,CKPne$m\=p&jk-nG=Pl,J\a(L"/jPV6<_[G(>dW'pG>)L-M3OSk!Z`F8*Kg
+[6TX/j^Zg5,nnR$Ap';HThE/=>1/njhk9GOJ*_o.Y6S.rUQ5<XQ&comP$u#D^q\f(2en3T,9J,>
+S,?^ZGr.9aBkBgG0,6i18>0KCPAN@Uk(&lO@;%6/!n?mhZ%/IbfioG%&-_3JQ1;Hg''$nB+IZJ[
+ci;tcbJr774RTEKd#6a1fTNKK:jXD2<JRb!qRF'n8(koN$0*+u`GluJjiiKof;G3.'7?InJ;Vi$
+,GW=faBAPNIj82!B6^meiWsZXS_mAMh"!^p%YPrr0<%pDQ"Yn2S8sEAFAtpS3\(,qi]2/FV+1)h
+$hG1%8jdO\d9P$G#.hK,]<Cs^+JUp&,1Aclg]+Xk"HQ^R"3U*CFY`?WY'-HV*0$dHRYXE@qMS.>
+^WeXA;PAYkqnpbY'9qK5OQ;&7G;*!djL'C=]2>Kp;6lEBVdOeRgj&*Q,ANlhkZ&@U6j&O^(KIG%
+jOs%2bfep#E1sStGfPZ0Mr4g7..L4)n_iG3.[PYp@$bPfJ:^]$kYn-/X'Snl:aQ1)5TgXa,REE5
+RC`GVci<q!-=]tk/`1/U17[d-1Z3's)FN<lRI<V^aJ"$0Z&?5>O9SFgO-s[kQ#o=-1OR\<=(\-S
+N_:9E'fb6[$g=^K?r%i"=mi;?q:8rR_!0Zk&nWis:$s-DalFMXpGQMd\ebfGM26hAL\!$%*KWH0
+bor@#RlA4ToS+?cLWk0sOg:5i9k2<]R3IooW-J1j62JjY9%1dU7MG\M\$q(^:Bt0"q&*,$l\9RU
+HY'T"P<9d"]34\EKq&sOP+@f68lY0%%`M6BARkU=LQ*ld/)OCbC-2TYK,2!4B1\6`5^HkE7\s+!
+'kMe.YCeR@]*)i6;+L$C2FaQ*E'3/J_dVa/qg/s%_?4UrF<GSf9ti@MjQf_c)(oP5-@n9M1_+XP
+*pdD^(<J_%T9ff4j0CpB:3J6j+V(EiF>F&4>KZ38*^**hS&cn7V1#]*Tgi-<(Mhh^W+4`NRXnQN
+[OuW:X+"kj#H)O&&J_Vg0IuVdPI`Ik4\ZsERt0<Me)j9<5)'XA:I+OR\Yj_>B`hHG[\O&@+8gTI
+-Em]UY1_U8]Arht.A,YsFJSP6$P`]A!@ZTYq]mYA#O"oq$J$O@,=+;FEi3:V#QfTU@9nIbdKH")
+PHh[,erbfeqIJT&4"S4)\<Pt"d*TaA5@d[6[`\/1B,\?A"<'(<*ZdWq86!I=bXS*e"_@2=o2,1q
+,$\.;rr)<P/1^picpp'WLHHWO.;0@bRY\W(bE+RjcFW[A\`EstVPM-9/=?E;`Q>I9\QQRJM$Z2Y
+?lms<9=dG)go&=Z\D2*DVo>J<doOWI3au+CiW$`@5KE[mURC=7oEncThM1eQS-c)\/pmgTpaQ'b
+\h!^GSSRNI_hH8!iSS8l%e=jck0tgfIt2A!Fmk+cnD1AA:E3(pGeC?mdQ_RK@.^2IZrXK3c?->M
+<48fpB2IpcM?%4iXK&H>S)]D%;7^nh+o&5'Q>W;5h]Fs_K1o]MA,Dhphm@BQlh8RS^+06NG.?*P
+G11q^eFQu<J&i]sVtp,P`^Ai85mIQVkBr,r4<te83WI9#)``#>I>qdI?>pa,o4Z))/Kk]Vq.LW0
+!p/n,H#sV\d7e-r]rrm+N6)>D4)m%H6/K@ML1AON.r4S2Drp?<+1[epd:&,;I5c7pOc]7dh;A"s
+WG1QY_O6;VoB@nmgpgnj\rDUaYJ:"gmAlSgi4JmQh22O,kUES2]BOadWeu24fA8$U]UTCJ?rRCP
+^%Skp`Ud)aPFqqUA=FlWaakucT[7/'pi4U1k:"/PVS*1iT:R(&i&]<#iZl2Y]2SHY\c`9Y@>FHF
+r_@G/4+[Bf4=Yf14?BB<GFs#B$.G5MW?qXBR:OCrp35k<^YO(s'Y$X23p/C>_aB:\+6cj-Dq`)3
+0/t&"ENXLRm0Ql:rn!b.](bM=(^l,Da!KmRXIueT>DZE8YRb,\XPc_s6R.=t#OpmW\^?n;,=q5I
+$"K[VYjl[7:S4'JeJ">M`02o22B&@*<i&_3*U'+&j9f$V7+M/\47TX1bZm8EF2R]-Z2DW67bJ78
+a'#:08nh:k0bq%b4e!X^Y$P2e,3(-;!)OHSFd[pr(GX%umZam:lo([[1)1n8R!GUicXhQUfD<XB
+:S+(NCCb:C8(WJ5?T0PkAnt<;aX,q]/F&:=2I3q@.P=]@.uj\(f\*&Yp,8liNP05(j6sA5Fnf3t
+_h*h+"tB2O4+06'R:)Z9Ln=5^*U31i?hmAL3^6/<GB`<n_-D5<7aI'Lc]LB0jf&-%4(R<Wq$$@P
+aI5\DQWIfIX^BZ`DX/c@gP.>q5Q'BW>r1.*\<Jrm.N04<<qd=*;,)"hX77#1(XV9`a0W*-F(@Pa
+9tlBka<'[j$n#[5M-bsdE7ds&S"$PRX'*_16!cP7V2i!i.oR`!j9>q0rFXG<2Z1kNi?+SJF)Ub\
+j7iYq/K&&hMo'8+HM-h\B<c'MfUC)(m?jCsrR2\PSDXrn,Q0P)Y#qsnoS5Q]2GdCbl(qQp^<el4
+5>_tlRF.<jT`u!/@G>g2c`tPiU(>%bE7/j0l/JtZ$fG&EP??m`D)h$)Aaf/N#c%Q"Z.R]mQsGWA
+:!A(=nE5YmdUo1tXpa`!)SHJ"YU]o7PBr]055cj$25ZgB\m0*D"i/r"WSS.W(rE(LK&V/`JWI@_
+BE=EJ3ZiVXYc'igU=?4/!*)D[3Iu%V6VkbS9AJ"C%jTQI?J_:Yi^%ZdqI.Df/13"ER59p$jM4e.
+%,l0o2'8nJW>ep>QO<QPqN(Ro8e&lW@?.sg>>.*E>H:L7lb(?eq8";/nY)'9q3DC]p-slBdCbjD
+8CKcH;,cQg6E8XdkMSZ&#BZ&eAc!2hojFK(*7XXGZpQJU%IiQ%#ZSDQVQ_G0Mc!)+XC\$@DU:Vs
+drRJ-HNnMd72c`+6jIe9@f'ZCM\cNJ4lt/Pk"L19T]2,t&u6G25*ZXss7)CH@$&n=+)=SnXZff>
+06`W^."l*pPt7Gr`>2MMLlIg7K0a;$no/bQ3_mZACNejhmU.ROU,S4V=EsR#l+rkQFs3CQe:ctp
+YP1,VG@&&N>[9DQT2M%OpM]$a3FqFomEV*5p"<n(4Fe:7bH#*`[D'A_27@ru5Fi4DM$X\W(t7Ks
+%XPCD`@ssK5J.&hH9(+t1sGEqhP)G#,ucH3DFp6OJXD3VqdZ<^4]_hu4pa)<es]KbF.&f!MsX2g
+Sb9DNKEtX+LhQ:kn6Wn55tb%nB!<-UV$Y!@FpJn9g!k*RQu-'[\YD1_<8'c[&Y,k7DWs9!]*H'J
+d'pd::HC\RFfT$&"O*Z$'7s;f=:tK$'?:50+.Md4P>6`kXj35>YH_&9YWeFj&Zjcl@0I/ni.*eP
+,!Is.TibejN&dXfa-p5."@<GIjfGttiKL,gb<]?IAZUV6e0pj-*cj=!Cpl@/^=lUu#01!Di<G??
+1lBp(.a-$;Ys,FY,ceX%^T`=aD)Jq@`hYiHPimfk%;5RE]Bad'"uVDSWb7>?*PM/2?5ia77Ls7G
+&T/$fKZSJ+:cj+*MbBU`[1C$Q3=Ke5N]d2S1h,M-eF6;++?D[t6rEL)a`Wj`#'1rkUbQ5O2cNoj
+Q*gYX7d%LVJrJd4Zh_6-VMVP.i)A[(5V+8Z/1MQodW<;H;o1j`=eV2eE=061034X4JrL[IQ.gWW
+b*?0nLb2t8UpUsp(76,Rq-\q;l9K`Jb#qB(Ec,a(nnquYC5gN&;Qo69e63$3UCam3Nl$aDfHd.?
+"72`:!Ao\%jud%a$0rH]*L!!+)cr0LUuiatQ`;Rt-e%?*^j_@j9ummb-17,%"D^:s;7p&-cd?8(
+8sl,"h"d38Nr8U@Z0=6_UW%BW>QWOOG:mdPQ0cL&C[:f$TKW6u<(#<#*>PUUjnmd*9lX0)FiMiR
+SW;TPaB!=&:cFHSmKs9R+6[0\LN,H/EC=_jl9SqP5cUuDlijUO/8X6178F26]2&M*5j;]P>CNCd
+1qN[T49eM+iDc2hG&A9Lm/Oon4D0HHZ(ZkF"V#YddU.,ufCPr+N2fRQf+i"W8pSIWNZ4DeosYTc
+9,@d!T<KY3>8tHr)jCL=#Da\HD0`>j%fc'^jj\:!bE7[gi"?2`chS/9+"L/Z_d/Z<_sGb=0oK1g
+BAWs_d+**rKDWCa*@T,^aYBdeC)rs`e^_)Q]<(JHH8FX,p\6i%`\.O;_=I0+X[._DI44k/r!f1!
+BPD7"/O'=i;NUjsKCM%@dWPiboS>ldSaL;S#,i&m"`IQX(:nBXGjDhJLO&DkSqR3*BZ>Bg;nLUn
+B;cP1mLrrk>\>W?D(4S_H&Rj`Yj:+jSA%M<%DYqLd*dnfbXeUgc7dF$Jg.3^clB\k+:)$19CfE6
+or,2>VBX7hHu,Ig]V'i0MfO.&08&'KK"k@#b6faA_.E=;?e]5J@5RuW')-$N!W81rdUkQFc;XG)
+pTWMOAhBO_h6uK=.$+7MD.r!joj`F=08$%YR/=@BkAbtU=!Q%oD55Hs.&=$g&)Ru'4+,kqh(<9b
+*,iC5k<;?nYE-t^mL0BV^M6bVl^?%>D:]eL1NtQ/^W\g9Rut-%5pr]54r0gA+0[Z=@dd+5%/-Z1
+`K-^b_f[M8mQHsqn1:,`7a@Ic#NR!h?[=t:,h'hS;C!OppRR9CjM=nf^\SoLb]W4lE$*k-s*O[c
+Y`JaP(P)6F?s7fR@"8#JYaIiEDeAt!H+;kX.@prgkd\EYn3)<U[\r06NPfVbDRAb[^!'XTp^_kl
+:><X%UeBWn9pMS:^,@&-L`Q'&EFPlh'5!q,hCD-E28;92Q<Y*XF&f5@k/BEb`qOhB_PKsILNBu\
+<KKg;G3"1&Q0Yh8>g'4E'[=s&![YqXM5a1OD_bD%o*fRMqbtN=FdbA*-D:qE@.@*q2\[#B=6Gp8
+^d[+&QnNXs"&j+C?foG/1fF2i]5`qM5W@ZnSkS0%/U-"4N&kSEd)E@3#E@d8_`aX\mjYOe+b1T!
+95kR1pF#>=Y<MK0:RM0Uh*!ktD_8cc*TLZmB>/WN>4=FPG])9ReBc(i(Sip&+G/;\'Y.iAp=]_)
+9>>3&>"MSgqeXC)=S?sO/0fAP?Vq;l5^1"SCm5X6O3/m[fEqBEU42QJ@.E8RBO>hP=K^K\hh#@t
+,B7kreo9+7dPXM_Sbg83>VKBCe6Zj-b=F/A'ua1/lQ!=3=E!Qoa#6!8pc+A5c)jVhO2F8^:eS-9
+noOBnng0"HncG('4("]'##aUb!AbhPmnX8>&pSua*>>n8oO-I2'*kXVmBP5MB;475;f7!Fpr<0^
+NR)P,n:+6$`r&+U?FOhB44i'>q;U,9cgU^;?,U+1FgNSQ,ZGo=)_,N=Dej6.j$OK;VlP]^3ae]+
+Ots:7%<Ab!k^Us`A>MTn6p;JXES1A`7T7N`MDOZD^UQ(-aO%Wg+W^At!&i9P#^r]^3Wl>M!Cc;5
+gnHoj\&p*KOT5QHj^tL'QD"S&Af6IT;3g3W*RSRN.5L%$]F0TS`LmcAa:1]F=$pr@Ku$%H\NL@2
+:d)^JJb3J40s+2W!D7`U2-';bUE[FDf3[!0Xt'P'5.*ti#tfIqhFP:&[4i1h$Wk!Q0Y06G/sst%
+>ot]Oo%r#5T<<qjk725W&+[4L9>p0-LOQp85oM52b=gQ)1_l:k$Hu*e^8,oBnEhL1E%u[":6S:k
+Z,k]==)k%8]^Cm'B`jt**uKk@Ag'=i.hU&Z+Z"G[lN]T%G)\uWrnj;h;XpZVInIZtbK]CCUUX2K
+i9@:a(<D_3;NkU2El:3M15c8NMS#Z-+JUo1>V([G-,aDkaARSB&fE!-^%O^JQ</Q(>O9S-gq%Tb
+.uc^K,cM\`%r.&Gc'<ETS3W<9Cs6k(e6el.7RlI&PU4WWkrqA3;&(MNe_W_-PLKkq5tQX$Lfjp,
+]XsKG(ho,>5QQ6X+<rBu1JdD/X&LU#$Dd!nWhn!hRA$N+Zhip*)G:0X;YW#cg4Mis?[t7B&Eag<
+fC(2S@e8)N<Rhu:75>O+-1m)k$2aiG2>m(Qo[93_HT+cDa]5T.(Mq2IDU5e=5%403/s>IJQ,qI%
+Y[ZZMR@:O=!Hn@N+CIui4;o6]hpS\M;@h"5#?p'WkDl)9pF,7u`Z=]gg@mCUVt"/.f9r=)/BkoA
+JW'#8@[!#9ZEUhOnS]VT`bAg)QkV^N?0!:FWDt(!MQ9@PY;5;O<V()qO(3,cp`2V\E6)/_fs)n\
+9+kM`dnTl5[,oRr`qqCSMn@U/6BAaMbV[>#7UCsrh?>^7"h.N[UXS=?b':HE3N_D>2RB\W<6U-B
+*9d4Dh[tFZ9Lgb1,s:fX#:qYa5Ig+EddrT.!UAQL*B@8n?Cm[PSL]ildo&Q>h?WM%kd&,oJs.'R
+_&!fUc%2XnrUc/Oa+@Ca:n<q@SW,-3'boNOIen<47n%eab82oJ]jlaU3Ca**IH%8jl7DcURtZ([
+e$I4JKj%J&n>WIkXt.cEM(AB`DZ/&8;IV0Z<Zc*T9nGJd:R/ed04b*@1I*=ths-ZRR;Y_Ib0?7R
+T7l:$\@>F.X-EXCm!R%,d$Mh)K$d:=kPenAo7fFMf\#"`f^BjkB$em8QdNWId@mcBi.>TK,#ZQ0
+$Fs*fTET!kBAa^h3i+XOiHV_[*4"fe,1XQ3[_P`UMhQO8m*Tl=BSR+J2#MWNpqONp-b0~>
+endstream
+endobj
+9 0 obj
+<</Type/FontDescriptor/FontName/LOLTIH+Times-Bold/FontBBox[-24 -19 476 691]/Flags 65568
+/Ascent 691
+/CapHeight 691
+/Descent -19
+/ItalicAngle 0
+/StemV 71
+/MissingWidth 500
+/CharSet(/colon/eight/five/four/one/seven/slash/three/two/zero)/FontFile3 109 0 R>>
+endobj
+109 0 obj
+<</Filter[/ASCII85Decode
+/FlateDecode]
+/Subtype/Type1C/Length 1373>>stream
+Gar?.HV@Xd'Z][=o_*/Sa=)864PHjrrGVq.UE`HcD286<$oWBS5VHuJ05,og",Uj9ibu^`$B#;A
+;'ltA3ac@sS0A*Q7P\Rb[cr`Z"r4U@9h[[Yr\1U=)#s)tPB4J$SBj2U3@*SL6]`QB0%(\!CLX0o
+T\0b6pe[+aoARRj<]b6iA.-;3gjYq=OpI/fGOVg/5e+0'c9;?$!JGtKmI**Bba-gL]iJcU@u:YT
+a2Z.Ir21g><%>>fp"p1)OL+5[-8s$41iil-`Q4H`Bl'*Eg0i:ZYZaDp7;$241`B,qfljI>^t#cH
+o`i+K@W#dfZ=;KtV(sLIC\HoVNR^a([a8il19pXe'q<D/E>j7hnc&oI+L^`9-7-EgZ?K[@IY%hJ
+FqB4XPR&HM@OJF=O:e1>fR""CfB]dVZXb=A5lTi.ku7&g$PN7kr\.f*G`j'mb^$L^,RSbp>q5c7
+o&n>@%!uO&U_An7%$Ce@m5`8#MK74s=nP3XM("Y/e\C$UO9+qU@\EkGiufC!ns,2<"r26V^LcXd
+^!U^bFGYDX@MI0=K(snNRElju3*PaH,:A!:nsXc=5/[`b.k_m7a/#q*oR;![GPAY/58\_8!htHr
+S&uHbN!QCdg1&p9Xh<:8;P%\$&3Z]^4/,FXaS7lj8=5)b!T+/d`_)Z)hE2g8BH0gaMt$YRpTE@=
+pLSgq\;uK0Z50Q;Y0jW?bo-.-20/$:n<`>CEnN*[qjMlUaG/4<UAE<idreYM$7fg0T<^JQr?f;M
+>p-X#.KcVWl08?=@)eL;K3obtp39;LN_YpK<4%Lr2n@YtH<PW=`7/-s(6ZX:*3n4E8*f6)ET9J4
+U,e-3?bE35):Dn/:_5L,Emf&0dHk]8X6HOYX39N*<u+.EjaS<hP>MriZumW!"Fu"uEWgsr,4TR'
+*A%/[=$dG8+%d1]*5Fj"/SECl";qul=WATJY!XI&g]de5X*8$5!Y0)T]pu5OrY.mpIbQd_LukNO
+(ni9B.`D([3;iF=WU$I#[*.%EZ\9f_5,qX*[9<>iWKEei2-sr]['lZ*GAKRS"tJ:!)a+#<CC`-[
+U>U>,n#4O\><DBl+e7U44K6Oo$Dkb%_BEZ%g%j#8U7m=YjVr*rj/meLo`SP,*!SXo",rSD^bQH+
+HWNB>&"#\qXeVT;A3S*Y2''5r%8p$(56T(=-Z61>Ep;1O5+T3t*4#:d4;Qu(j?q88V<]O>U?L21
+)C/+HI?PCeBV(f=];Og^/(;\RCisK</>a:-1S+4&Abq\'lJd3Ym+P_5aMah.+!,Pi3^c=r$2[$1
+<,e;K13`-Xbh0>&Bl:Rg!I&rB33KR:>rsi*2WiQ0aqan-%_g'd`uUC[40W1\9-OC[:uXtVrr?[?
+mT9~>
+endstream
+endobj
+13 0 obj
+<</Type/FontDescriptor/FontName/YYBCEB+Times-Roman/FontBBox[-9 -218 863 727]/Flags 32
+/Ascent 727
+/CapHeight 674
+/Descent -218
+/ItalicAngle 0
+/StemV 129
+/MissingWidth 500
+/XHeight 460
+/CharSet(/A/M/a/c/d/dollar/e/f/five/g/h/hyphen/i/k/l/m/n/nine/o/one/p/period/r/s/slash/t/v/w/x/zero)/FontFile3 110 0 R>>
+endobj
+110 0 obj
+<</Filter[/ASCII85Decode
+/FlateDecode]
+/Subtype/Type1C/Length 4311>>stream
+Gar>GHW3qqSj"kSH]*\31n&)PBW&8H^<kF<pY&Ze8%mma'L^:L8q8$0i>E:!KS7r(!>7^cJ:r,k
+,6B&)`@>'!%prD?H<^$EHi)18bjB99m)*XOess*kf).7<SX"=mpAVb>rS-6(@o7^H-l.^UE(H-<
+c<V)8b=\)s^/re,=S0f.kiM/?,+\[Xp*=92("pf;L]Z3W^ouk]^jSNDl&3&]&N7?gZ!".pCIa%O
+Y0<$(V<<Q6N/9ark,MF^s6lTQiSi`=a-H\:'!bf5.nPqZXC,?A`0iB+Q<9UMqiD(qG@m`56qCLY
+;P'I!P+7[Z:@Xak->/33L?t.89&t"q6-.3)2a]KVL9=n$r+t.9aZ?#c)tIe,+o>g/+d!qqijAX-
+jIH7b6;`tdX&LFlaiu>4,T!')Rj(U%9:)0mbZ_>r?0M-EiNH,.X42U`!#7pCU^g6Ve6sheg.!*V
+[Spt@*Rmi!(\JrZS,*4%8aWAJ;1[4@l36HA.Yq8%/YtFkLr#8FUVtXaf"\FMkP<A<SG1q-7.rkC
+*1U(i9$XnN0m=PK!ba!9T?f_V^W$5'Iu;"d^YU%cfX>0Ci6?d$\iapi'mXcR./f$Y2&klDI:P(b
+e*dl)rAe6$,q3oH4_08L.%rt(Lu[;66/hGs/.FI3d0-&e_(P0>.YlfJNAL^$UFM,&KSA%_k-Wdd
+_Z5$<,[O4g?&i1^dS$[^1O/d*]9.Q-=)5'BeKa:[;oaee'gU/m9jAQ8j)c)nX&_=/&B"\/j0PkJ
+IKV%Q1O"b5(naF%lA0@WM@7ASkT"7K@O:dmnab7@RArE^KTCZ2*3YUj%i#D<L^#NG_9;-C.rP,4
+)dDMO*a'JoM?q>0moSEi*;'.N=GW<FHU_<SBk=rFX/j<^_YIlsQB]nmOTLY]Wou@P".u-rIRhKS
+,$@X?AgP_Xo[/5^#2Pofq+m=[Qe'R-H$*+f</9C^eSnJEQO_AN^&ENg#-Uk^;@rb'1Y>U%X[b;m
+?4R5rg'qNt@fPo$++>6FYi@BT*DF\68JHRV9]h^oFR:6:!5Gpqf5l4Nini`$";5nUQAD<`6Tr:O
+r05%d4V-kp%,4B-jY^0*WZ2:fe.j9eL]sFr7cPO1K8\+\G$.cs1_"FgkW<k"X1#1\:bQY7e=2s6
+[_&!@r<466Z8?KH]]_FRC6$P7diKoJ^_.JfFWPk28)"r(iAqI`]d.h[^59VcQ/S&iH>Z/?Z*CU?
+$jfVK@+NrFi$MZWIWb@ic-^MC#Q%7Y8J#1L(fW?RU.dl48QhQ/e(InQ/EeL"dn[e)''eO]mF>eq
+hr)R:e54Q4^scibG*Op<qs(L<\'O72miN/Sl8)S<\c[']7XD`]dlij'D+rKnL+,0V0?AuCakiF3
+_,%:pNo^H%>(IjK?>2,#NQ%c(UHs8U.A<[K#!^KS9ubVXW4].I;?;Dg>pQ%]2t\G%SK)O>l5+4$
+$Z]4$HmD6_GMNhhdieG-hmgnXC-;-#%u\_F4;3jGgK3euTL*1f0U*GU&dSGZ>\@e"Da8FHe6Ho4
+Zp5Fa;hO$9X't!F*'d!gAs:2I.B-=uQIMX4A9GIYiKs$sIeV)jCQAWS=6lIZDDD7B@)-G7+r+"F
+EqT"r,_s,@kG]d>6;@PrXgan.1@>h+i)H+3mtn:b=po,2Td53(&iZ'./*t>05V3K#5W,n66T&PX
+YSgX)n1sQnn&VeKC/GGG3?=YaG8^56&q*,^[AaoJXJi#!EJ3TLJ)`JK=_^&m#S9NK0MFuDU&"(A
+QbU?es0O'H/A:K[Sk>b.<?mlDC`!uI_Z3DrG,sBhLQ^Et&6uP!4u1HZBPVPVZrU8Z<*D^*Fd4jq
+KjB,/,ElE](u[YDf'ZP',`2+-)@=Q:_/YUtM:]a;>GeP0K:Rd5RL;TO%5@Sg%Ppagh)@H\=^#('
+bLO[k$P6!u%@e#1"*A[-#VR0Q50!*=DnB,]G;2;DiasB'A*,ar$-2SN_#`u,T#SJoJW">@K:WF^
+$#,JrQ_0IEC=4Q=$B9fo)cI4h-YdU(H`@pe:8mJD%r0Vf*rUZ&`[>"(SorgrbU=:+n`qeMe($En
+XY-MAoE[,HQ@r5,bU-j5+Jl=oUB::r\k@+U=WLkSkuVjQ04@@SDDZs=HQH\dpIf`02!!/ag-rFF
+2HdAl"UR4oh//L&SD+`"Varm%3g(oGKf2<(psE9h5!.3F4!a0-B@=O%"93EcEmOTm=dV'A2uggf
+I@%[mRl^[JQqk9(PTeG'2qV0+Bjb&!4oiqMVt44HFHZhmZKKH-Lc0<FHm/7M;Pt"AK6(r3oU;X2
+bf&/ugu/-G<?(cRUu)0^HL;cN_:Rk).F^ocHWaWMZ!rHIIl-Za)cN7rTWG4[jTq`Ke5(nacPTPN
+:o,-)W!#Q)<`P&o#bJ%P*#F`6+RYHFT0SKg[=gnR,qn)(#LC"Elo@!Ig&j%P%iL?fK3kOu0h;lb
+47j@C_OS_p%k^TuN>;7C]S321(_!\5eMrMSn3N4Z%uNhJh9p$!Yd(t&)T:7;-(c-fF8E1sNjTir
+8'k,0=E=&DHoh[j7!No##1)^E`RL9:4N+:Goa_:&>sm4?]?L'\r/DcTkekMKf&)nLY5@YX,).AG
+\9j!8)@Y&+@:Qa`d"Ger]=Dc,Z#fs%=S]4<;0HD?>353]prT_]QX$mlYD_n,MphjH/c'd8+6"qn
++RlYNF;hp]_+Qh.`p"BpbBk0EIF[Fjdht!7GPZ`\5\c4oRW%60mIH]^"P7ON#`\0`Iutm(<%:nF
+dL<*UJJ>&uTc7!J5:k,GWA+$Sij8Lm43+4O_nAcmBGb#>3k!R*Gd[HOF&!`j7%XCo/mDVX[F0Z^
+(!as*F:+#;HFs$eY!I.NFdKONqB.N</`lXE+.FShr3ft%(A0s#iOg2]4l0dnNh%!:i9tqm]n7!3
+SZ8b\@<9$?(eT>aV<Q%o-\),#pmWN^qh4X_)8)$HCd!6m)k6&*3fW(nNjKfN&eE>AK/UmERjQ2.
+9f@)$iWSaDngD16OIWr_Qk3&G;N!r0;f]*5+>;[fJa+]m_a3dNXX$IpG7pPhVW+Ne`]hiTU1t,I
+`h&lG-L(ZaTEd.J.Ho_dmkV!D$]a_5o=@:/2:HRUZa6YA$/0lo2Dm`3#5q<SW>JlJG>3o7h1Z\u
+?oec6nDnk?10JCa\%AcMgRHeA(&_03R#CVp,EoHM*oj6BNaTV-Rin.M@'mJW4MiJ0=r1"7SM7)`
+d%CA/!ZXQ#>KY1Ok&O,*^h0g<:amqJ2X,mKC+OLI'.oX?j9oK-NobJ/h>-(,7(5nKWbsLHm:::#
+,RsKiAUPH65UFAfNK+l#!r6pT-o6d(dZUOQ5un<Tf:lFJ3l?+s3Rr09WuP-`[Hb)6R#)t*TGWYH
+ZBWI'mfJX%3]jnUkoUc>_^_p"Vb.L[lXjm85/hh/K-PdTgW`Df:5d@U4a#<j-&>*oc\M@)-0$5j
+"_,aAH?:(b6%I0;]@GW_G,Asb_=?)uk"rAa3iLY#qZ+l^J`nS+'=nZn%Hoh$h`QJJFL+)'7+.H:
+XJ@,aaD@$M5di\rXDLG)"o('mr[FJR*u1+_'dH[Q9=eS/,*HZW,2mr^n;8`,"u!B7\ViH@#4"+K
+A=mI'^dq^U!sE(khS[2`r];b`-Tb8\Oji.@g!SWFh3fQuYgI]-L!8i'C`)V./lDW":<q*kFh)QO
+W0>d2*'9e!Z'AHSKT]?7ktq])"<]HA&QV,aJ*u6o`!a+WcinNgBk["YV-scE?3kOk."6k$&XI)$
+B$N/J,pqWiOGt1mrr]1WoWsq`oUi7+Z/H0+=n7f:a-cqg_bc?t3,7`ZX3Jo?VJ;uN>3aTb76XVp
+.*3th<YoPoPC5-/]>3R/,!5W<dQdR66?A$UI`0+0\(Q!brKrB#\;dH@Cp=KMKjSXr(DoaPOFW.t
+KLH:XgK($U6"tJPX`).V*>N%FH>tTA$!6NKnt&0ZD9W]bCs0.@MC@$=El@-]n'BeV\o:t4EOKEs
+4[=3!-]X]m*04t^r[g<r`.g(TT9n+"*W'S8&,S@?\Sk7Br88KB!T@T$LTeVe$'-XiY_"DNJTlU!
+WCp`\UDJX)aX4k7+fhpm^5?QK85WEh0:(^sC=<al+Q5Lj0\uM<9;e`1do#"^i1J>5,b'4<:#5\l
+!-96el1aC^*bGM22p&JL%W=l^6)7@YS<5Cc.o)`_FL3cN,dgk-WkNNUP!Q=L.e[-802P@YF$EA>
+e'F8rG6\$TmQ#S66f%]IpF,kT%?q:c4?90W%p=,ri^tn731J^q/gS'\o"m"03m\#@1b`mL!=k87
+H/D-"aO+>$4"^+g2%3H/kZA?ZjPfh-5?Z?C$OD"**3bO!rWf;*ekl~>
+endstream
+endobj
+11 0 obj
+<</Type/FontDescriptor/FontName/ZRKBEE+Helvetica-Bold/FontBBox[0 -23 522 724]/Flags 65568
+/Ascent 724
+/CapHeight 724
+/Descent -23
+/ItalicAngle 0
+/StemV 78
+/MissingWidth 500
+/CharSet(/four/one/slash/three/two)/FontFile3 111 0 R>>
+endobj
+111 0 obj
+<</Filter[/ASCII85Decode
+/FlateDecode]
+/Subtype/Type1C/Length 767>>stream
+Gaqcp>t@n&(rtOo4D1R7h#-@]WLL(WV(U$g5qVUN'f26*#:1O]RlbJbc9?2g\;Ro%Ut?PjKV]Kq
+TokFCjMZt6/ei5]4t,Us\qm!\_<rM=GJ"-N"VKQQ4T(f.oC2YqPb3^JL,!gD8jj$06dE::JE"kJ
+>#NY-MEGA!WF:t4H<E%Egt=)P"e@.(c]cU_8/+AF"J^ZAa"X9FWK'4t3\5Wj@9e6WA7(>H])NkW
+g$NtLMZ01):+7H8r-5Er6mO&ioL]%$/+1c#7?NA07u7G`+ma<_-$O7oN)Piki@\8qK>BeU=*N0P
+`eF\%SQ8p?AY3``KMOW,+md"Tn,FU<+ngGgZ)JV76<&n9cjh<F:(*'P;)rAYe''H,"M&E'KijcE
+GBQ6IY$VP5M??p\@?"eteaPP+*K62L\.o+94^5*33S6MdN@J;=cP]PIU;/M,:_)YFP>"<*86<?i
+b\[-r#;CRQYbl=/@'9AnCZrKuAm.9i?:eJ35hR.OETtmBB:6T][UFkJ:n<:Ip'Zn][$2pM:-0I#
+J_UI<(k)O`gAmS+]ETIj&YH"cM7XF^a6pRh5/-4X5jpF'k3Y#6Xl,@apI6Co;0fBprsG&fT!d/2
+b*(((=6:U=-j)icHYP`l1se0l$$aMe<<jV$SbcmZ7dB-[oYP'P7HN,;jl;mac_8K@pEr+kJS3nT
+/lrDJM+:)q[<$G)X,EeY=J@^h@!efL(P*B:%gP8%c5OTAA17t)l2E[Q$jNZa%YdP@J>ug?!CFO%
+MsLOO~>
+endstream
+endobj
+113 0 obj
+<</Type/Metadata
+/Subtype/XML/Length 1420>>stream
+<?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>
+<?adobe-xap-filters esc="CRLF"?>
+<x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='XMP toolkit 2.9.1-13, framework 1.6'>
+<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:iX='http://ns.adobe.com/iX/1.0/'>
+<rdf:Description rdf:about='uuid:c0455e07-afe6-11f2-0000-5c710f17b2c2' xmlns:pdf='http://ns.adobe.com/pdf/1.3/' pdf:Producer='GPL Ghostscript 9.07'/>
+<rdf:Description rdf:about='uuid:c0455e07-afe6-11f2-0000-5c710f17b2c2' xmlns:xmp='http://ns.adobe.com/xap/1.0/'><xmp:ModifyDate>2017-08-02T14:33:19-07:00</xmp:ModifyDate>
+<xmp:CreateDate>2017-08-02T14:33:19-07:00</xmp:CreateDate>
+<xmp:CreatorTool>GNU Enscript 1.6.6</xmp:CreatorTool></rdf:Description>
+<rdf:Description rdf:about='uuid:c0455e07-afe6-11f2-0000-5c710f17b2c2' xmlns:xapMM='http://ns.adobe.com/xap/1.0/mm/' xapMM:DocumentID='uuid:c0455e07-afe6-11f2-0000-5c710f17b2c2'/>
+<rdf:Description rdf:about='uuid:c0455e07-afe6-11f2-0000-5c710f17b2c2' xmlns:dc='http://purl.org/dc/elements/1.1/' dc:format='application/pdf'><dc:title><rdf:Alt><rdf:li xml:lang='x-default'>Listing.ps</rdf:li></rdf:Alt></dc:title><dc:creator><rdf:Seq><rdf:li>Wesley Mackey</rdf:li></rdf:Seq></dc:creator></rdf:Description>
+</rdf:RDF>
+</x:xmpmeta>
+                                                                        
+                                                                        
+<?xpacket end='w'?>
+endstream
+endobj
+2 0 obj
+<</Producer(GPL Ghostscript 9.07)
+/CreationDate(D:20170802143319-07'00')
+/ModDate(D:20170802143319-07'00')
+/Title(Listing.ps)
+/Author(Wesley Mackey)
+/Creator(GNU Enscript 1.6.6)>>endobj
+xref
+0 114
+0000000000 65535 f 
+0000052124 00000 n 
+0000075739 00000 n 
+0000051937 00000 n 
+0000049026 00000 n 
+0000000009 00000 n 
+0000002923 00000 n 
+0000052190 00000 n 
+0000054629 00000 n 
+0000066646 00000 n 
+0000055213 00000 n 
+0000073127 00000 n 
+0000054826 00000 n 
+0000068392 00000 n 
+0000054002 00000 n 
+0000055394 00000 n 
+0000052231 00000 n 
+0000052261 00000 n 
+0000049177 00000 n 
+0000002943 00000 n 
+0000004748 00000 n 
+0000052324 00000 n 
+0000052354 00000 n 
+0000049330 00000 n 
+0000004769 00000 n 
+0000006840 00000 n 
+0000052417 00000 n 
+0000052447 00000 n 
+0000049483 00000 n 
+0000006861 00000 n 
+0000008334 00000 n 
+0000052510 00000 n 
+0000052540 00000 n 
+0000049636 00000 n 
+0000008355 00000 n 
+0000010362 00000 n 
+0000052603 00000 n 
+0000052633 00000 n 
+0000049789 00000 n 
+0000010383 00000 n 
+0000013019 00000 n 
+0000052696 00000 n 
+0000052726 00000 n 
+0000049942 00000 n 
+0000013040 00000 n 
+0000016025 00000 n 
+0000052789 00000 n 
+0000052819 00000 n 
+0000050095 00000 n 
+0000016046 00000 n 
+0000019843 00000 n 
+0000052882 00000 n 
+0000052912 00000 n 
+0000050248 00000 n 
+0000019864 00000 n 
+0000021879 00000 n 
+0000052975 00000 n 
+0000053005 00000 n 
+0000050401 00000 n 
+0000021900 00000 n 
+0000024826 00000 n 
+0000053068 00000 n 
+0000053098 00000 n 
+0000050554 00000 n 
+0000024847 00000 n 
+0000027907 00000 n 
+0000053161 00000 n 
+0000053191 00000 n 
+0000050707 00000 n 
+0000027928 00000 n 
+0000029896 00000 n 
+0000053254 00000 n 
+0000053284 00000 n 
+0000050860 00000 n 
+0000029917 00000 n 
+0000033037 00000 n 
+0000053347 00000 n 
+0000053377 00000 n 
+0000051013 00000 n 
+0000033058 00000 n 
+0000036096 00000 n 
+0000053440 00000 n 
+0000053470 00000 n 
+0000051166 00000 n 
+0000036117 00000 n 
+0000039075 00000 n 
+0000053533 00000 n 
+0000053563 00000 n 
+0000051319 00000 n 
+0000039096 00000 n 
+0000041645 00000 n 
+0000053626 00000 n 
+0000053656 00000 n 
+0000051472 00000 n 
+0000041666 00000 n 
+0000043557 00000 n 
+0000053719 00000 n 
+0000053749 00000 n 
+0000051625 00000 n 
+0000043578 00000 n 
+0000046386 00000 n 
+0000053812 00000 n 
+0000053843 00000 n 
+0000051780 00000 n 
+0000046408 00000 n 
+0000049004 00000 n 
+0000053907 00000 n 
+0000053938 00000 n 
+0000056060 00000 n 
+0000066916 00000 n 
+0000068713 00000 n 
+0000073372 00000 n 
+0000054526 00000 n 
+0000074241 00000 n 
+trailer
+<< /Size 114 /Root 1 0 R /Info 2 0 R
+/ID [<A945F26E32401E5F83ECEA14E59CE8B5><A945F26E32401E5F83ECEA14E59CE8B5>]
+>>
+startxref
+75933
+%%EOF
