@@ -16,7 +16,7 @@ Makefile is provided, will a keyvalue executable
 
 This program assumes X11 Forwarding
 
-/Tests/mk.tests is a script which will test functionality of the program
+/Tests/mk.build is a script which will test functionality of the program
 
 Each test consists of a:
 	*.gd file - input for the program to execute, image window will display on screen
