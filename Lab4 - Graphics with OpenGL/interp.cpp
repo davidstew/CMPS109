@@ -47,12 +47,17 @@ void interpreter::interpret (const parameters& params) {
    param begin = params.cbegin();
    string command = *begin;
    //cout << "The command is: " << command << endl;
-   if (command == "moveby") { ++begin; window::pixels_to_move_by = std::strtof((*begin).c_str(), 0); return; }  
+   if (command == "moveby") {
+      ++begin;
+      window::pixels_to_move_by = std::strtof((*begin).c_str(), 0);
+      return;
+   }  
    if (command == "border") {
       rgbcolor new_color {begin[1]};
-      cout << "The inputted color is: " << new_color << endl;
+      //cout << "The inputted color is: " << new_color << endl;
       window_dimensions::border_color = new_color;
-      cout << "The color of the border will be: " << window_dimensions::border_color << endl;
+      //cout << "The color of the border will be: " 
+      //<< window_dimensions::border_color << endl;
       window::border_width = std::strtof((begin[2]).c_str(), 0);
       return;
    } 
@@ -109,8 +114,8 @@ shape_ptr interpreter::make_text (param begin, param end) {
 
    while (begin != end) {
       text_field = text_field + (*begin);
-       text_field += " ";
-       ++begin;
+      text_field += " ";
+      ++begin;
    }
 
    return make_shared<text>(font_type, text_field);
@@ -131,7 +136,8 @@ shape_ptr interpreter::make_circle (param begin, param end) {
    GLfloat radius = std::strtof((*begin).c_str(), 0);
 
    if (++begin != end)
-   throw runtime_error ("Define failed: incorrect input for making a circle");
+      throw runtime_error 
+         ("Define failed: incorrect input for making a circle");
 
    return make_shared<circle> (radius);
 }
@@ -143,11 +149,11 @@ shape_ptr interpreter::make_polygon (param begin, param end) {
    GLfloat y_coodrinate; 
 
    while (begin != end) { 
-   x_coordinate = std::strtof((*begin).c_str(), 0);
-   ++begin;
-   y_coodrinate = std::strtof((*begin).c_str(), 0);
-   ++begin;
-   list.push_back({x_coordinate, y_coodrinate});
+      x_coordinate = std::strtof((*begin).c_str(), 0);
+      ++begin;
+      y_coodrinate = std::strtof((*begin).c_str(), 0);
+      ++begin;
+      list.push_back({x_coordinate, y_coodrinate});
    }
 
    return make_shared<polygon>(list);
@@ -167,7 +173,8 @@ shape_ptr interpreter::make_square (param begin, param end) {
    GLfloat side = std::strtof((*begin).c_str(), 0);
 
    if (++begin != end)
-   throw runtime_error ("Define failed: incorrect input for making a square");
+      throw runtime_error 
+         ("Define failed: incorrect input for making a square");
 
    return make_shared<square>(side);
 }
@@ -188,8 +195,3 @@ shape_ptr interpreter::make_triangle(param begin, param end) {
 
    return make_shared<triangle>(width);
 }
-
-
-
-
-

@@ -1,8 +1,14 @@
-Instructions for the program are provided in asg3-listmap-templates
+Instructions for the program are provided in asg4-oop-inheritance
 
 =================================================================
-My implementation of the code is in interp.cpp graphics.h graphics.cpp
-shape.h shape.cpp
+My implementation of the code is in:
+
+	 interp.cpp
+	 graphics.h 
+	graphics.cpp
+	shape.h 
+	shape.cpp
+
 All other code was provided by instruction Wesley Mackey at UCSC
 =================================================================
 

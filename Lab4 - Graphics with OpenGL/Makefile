@@ -14,7 +14,7 @@ CPPSOURCE   = $(wildcard ${MODULES:=.cpp})
 TCCFILES    = $(wildcard ${MODULES:=.tcc})
 GENFILES    = colors.cppgen
 SOURCES     = $(wildcard ${foreach MOD, ${MODULES}, \
-                 ${MOD}.h ${MOD}.tcc ${MOD}.cpp})
+                 ${MOD}.h  ${MOD}.tcc  ${MOD}.cpp})
 OTHERS      = ${MKFILE} ${DEPFILE} mk-colors.perl
 ALLSOURCES  = ${SOURCES} ${OTHERS}
 EXECBIN     = gdraw
@@ -73,4 +73,3 @@ again :
 ifeq (${NEEDINCL}, )
 include ${DEPFILE}
 endif
-

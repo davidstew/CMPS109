@@ -1,0 +1,42 @@
+g++ -std=gnu++14 -g -O0 -rdynamic -Wall -Wextra -Wold-style-cast -c debug.cpp
+cpplint.py.perl debug.cpp
+Done processing debug.cpp
+g++ -std=gnu++14 -g -O0 -rdynamic -Wall -Wextra -Wold-style-cast -c graphics.cpp
+cpplint.py.perl graphics.cpp
+Done processing graphics.cpp
+g++ -std=gnu++14 -g -O0 -rdynamic -Wall -Wextra -Wold-style-cast -c interp.cpp
+interp.cpp:124:57: warning: unused parameter ‘end’ [-Wunused-parameter]
+ shape_ptr interpreter::make_ellipse (param begin, param end) {
+                                                         ^
+interp.cpp:162:59: warning: unused parameter ‘end’ [-Wunused-parameter]
+ shape_ptr interpreter::make_rectangle (param begin, param end) {
+                                                           ^
+interp.cpp:182:56: warning: unused parameter ‘end’ [-Wunused-parameter]
+ shape_ptr interpreter::make_diamond(param begin, param end) {
+                                                        ^
+interp.cpp:192:57: warning: unused parameter ‘end’ [-Wunused-parameter]
+ shape_ptr interpreter::make_triangle(param begin, param end) {
+                                                         ^
+cpplint.py.perl interp.cpp
+Done processing interp.cpp
+g++ -std=gnu++14 -g -O0 -rdynamic -Wall -Wextra -Wold-style-cast -c rgbcolor.cpp
+cpplint.py.perl rgbcolor.cpp
+Done processing rgbcolor.cpp
+g++ -std=gnu++14 -g -O0 -rdynamic -Wall -Wextra -Wold-style-cast -c shape.cpp
+shape.cpp: In member function ‘virtual void text::draw_border(const vertex&, const rgbcolor&)’:
+shape.cpp:113:11: warning: variable ‘center_’ set but not used [-Wunused-but-set-variable]
+    vertex center_ = center;
+           ^
+cpplint.py.perl shape.cpp
+Done processing shape.cpp
+g++ -std=gnu++14 -g -O0 -rdynamic -Wall -Wextra -Wold-style-cast -c util.cpp
+cpplint.py.perl util.cpp
+Done processing util.cpp
+g++ -std=gnu++14 -g -O0 -rdynamic -Wall -Wextra -Wold-style-cast -c main.cpp
+cpplint.py.perl main.cpp
+Done processing main.cpp
+g++ -std=gnu++14 -g -O0 -rdynamic -Wall -Wextra -Wold-style-cast -o gdraw debug.o graphics.o interp.o rgbcolor.o shape.o util.o main.o -lGL -lGLU -lglut -lm
+checksource debug.h debug.cpp graphics.h graphics.cpp interp.h interp.cpp rgbcolor.h rgbcolor.cpp shape.h shape.cpp util.h util.tcc util.cpp main.cpp Makefile Makefile.dep mk-colors.perl
+checksource: mk-colors.perl: No such file or directory
+checksource: TOTAL COMPLAINTS: 1
+gmake: [all] Error 1 (ignored)

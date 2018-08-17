@@ -55,15 +55,21 @@ polygon::polygon (const vertex_list& vertices): vertices(vertices) {
    DEBUGF ('c', this);
 }
 
-rectangle::rectangle (GLfloat width, GLfloat height) : polygon({  {-width, height}, {width, height}, {width, -height}, {-width, -height} }) {
+rectangle::rectangle (GLfloat width, GLfloat height) 
+   : polygon({  {-width, height}, {width, height},
+      {width, -height}, {-width, -height} }) {
 
 }
 
-diamond::diamond(const GLfloat width, const GLfloat height) : polygon({ {height / 2, 0}, {0, width / 2}, {-height / 2, 0}, {0, -width / 2} }) {
+diamond::diamond(const GLfloat width, const GLfloat height) 
+   : polygon({ {height / 2, 0}, {0, width / 2},
+      {-height / 2, 0}, {0, -width / 2} }) {
 
 }
 
-triangle::triangle(GLfloat width) : polygon({ {-width, 0}, {width, 0}, {0, width} }) {
+triangle::triangle(GLfloat width) 
+   : polygon({ {-width, 0}, {width, 0},
+      {0, width} }) {
 
 }
 
@@ -74,7 +80,7 @@ square::square (GLfloat width): rectangle (width, width) {
 
 void text::draw(const vertex& center, const rgbcolor& color) {
 
-   auto u_str = reinterpret_cast<const GLubyte*> (textdata.c_str());
+   auto u_str = reinterpret_cast<const GLubyte*>(textdata.c_str());
    GLfloat length_in_pixels;
    GLfloat height_in_pixels;
 
@@ -85,21 +91,25 @@ void text::draw(const vertex& center, const rgbcolor& color) {
    glutBitmapString (it->second, u_str);
 
    auto font_ptr = it->second;
-   auto new_font_ptr = const_cast<GLubyte*>(reinterpret_cast<const GLubyte*>(font_ptr));
+   auto new_font_ptr = const_cast<GLubyte*>
+      (reinterpret_cast<const GLubyte*>(font_ptr));
 
    length_in_pixels = glutBitmapLength (new_font_ptr, u_str);
    height_in_pixels = glutBitmapHeight(new_font_ptr);
 
    //generate coordinates for border of text obj
-   vertices.push_back({center.xpos, (center.ypos - (height_in_pixels))});
-   vertices.push_back({center.xpos, (center.ypos + (height_in_pixels))});
-   vertices.push_back({center.xpos + length_in_pixels, center.ypos + height_in_pixels});
-   vertices.push_back({center.xpos + length_in_pixels, center.ypos - height_in_pixels});
+   vertices.push_back({center.xpos, 
+      (center.ypos - (height_in_pixels))});
+   vertices.push_back({center.xpos, 
+      (center.ypos + (height_in_pixels))});
+   vertices.push_back({center.xpos + length_in_pixels,
+      center.ypos + height_in_pixels});
+   vertices.push_back({center.xpos + length_in_pixels,
+      center.ypos - height_in_pixels});
 }
 
 void text::draw_border(const vertex& center, const rgbcolor& color) {
 
-   //cout << "The border for the center is: " << center.xpos << " " << center.ypos << endl;
    vertex center_ = center;
    glClear (GL_COLOR_BUFFER_BIT);
 
@@ -111,7 +121,7 @@ void text::draw_border(const vertex& center, const rgbcolor& color) {
    glBegin(GL_LINE_LOOP);
    glPolygonMode(GL_BACK, GL_LINE);
    glColor3ubv(ptr);
-   for (int num = 0; num < vertices.size(); num++) {
+   for (unsigned int num = 0; num < vertices.size(); num++) {
       x = vertices[num].xpos;
       y = vertices[num].ypos;
       glVertex2f(x, y);
@@ -133,8 +143,10 @@ void ellipse::draw(const vertex& center, const rgbcolor& color) {
    const float delta = 2 * M_PI / 32;
 
    for (float theta = 0; theta < 2 * M_PI; theta += delta) {
-      float xpos = dimension.xpos * cos (theta) + center.xpos; //(window::width / 2); 
-      float ypos = dimension.ypos * sin (theta) + center.ypos; //(window::height / 2);
+      //(window::width / 2); 
+      float xpos = dimension.xpos * cos (theta) + center.xpos;
+      //(window::height / 2); 
+      float ypos = dimension.ypos * sin (theta) + center.ypos;
       glVertex2f (xpos, ypos);
    }
 
@@ -144,7 +156,6 @@ void ellipse::draw(const vertex& center, const rgbcolor& color) {
 void ellipse::draw_border(const vertex& center, const rgbcolor& color) {
    
    auto ptr = color.ubvec3();
-   cout << "The border for the center is: " << center.xpos << " " << center.ypos << endl;
 
    glLineWidth(window::border_width);
    glBegin(GL_LINE_LOOP);
@@ -154,8 +165,10 @@ void ellipse::draw_border(const vertex& center, const rgbcolor& color) {
    const float delta = 2 * M_PI / 32;
 
    for (float theta = 0; theta < 2 * M_PI; theta += delta) {
-      float xpos = dimension.xpos * cos (theta) + center.xpos; //(window::width / 2); 
-      float ypos = dimension.ypos * sin (theta) + center.ypos; //(window::height / 2);
+      //(window::width / 2);
+      float xpos = dimension.xpos * cos (theta) + center.xpos;
+      //(window::height / 2); 
+      float ypos = dimension.ypos * sin (theta) + center.ypos;
       glVertex2f (xpos, ypos);
    }
    
@@ -172,7 +185,7 @@ void polygon::draw(const vertex& center, const rgbcolor& color) {
    GLfloat x_average = 0.0;
    GLfloat y_average = 0.0;
 
-   for (int x = 0; x < vertices.size(); x++) { 
+   for (unsigned int x = 0; x < vertices.size(); x++) { 
       x_average += vertices_[x].xpos;
       y_average += vertices_[x].ypos;
    }
@@ -183,7 +196,7 @@ void polygon::draw(const vertex& center, const rgbcolor& color) {
    glBegin(GL_POLYGON);
    glPolygonMode(GL_BACK, GL_LINE);
    glColor3ubv(ptr);
-   for (int num = 0; num < vertices.size(); num++) {
+   for (unsigned int num = 0; num < vertices.size(); num++) {
       x = (vertices_[num].xpos - x_average) + center.xpos;
       y = (vertices_[num].ypos - y_average) + center.ypos;
       glVertex2f(x, y);
@@ -191,7 +204,7 @@ void polygon::draw(const vertex& center, const rgbcolor& color) {
    glEnd();
 }
 
-void polygon::draw_border(const vertex& center, const rgbcolor& color)  {
+void polygon::draw_border(const vertex& center, const rgbcolor& color) {
 
    auto ptr = color.ubvec3();
    vertex_list vertices_ = vertices;
@@ -201,7 +214,7 @@ void polygon::draw_border(const vertex& center, const rgbcolor& color)  {
    GLfloat x_average = 0.0;
    GLfloat y_average = 0.0;
 
-   for (int x = 0; x < vertices.size(); x++) { 
+   for (unsigned int x = 0; x < vertices.size(); x++) { 
       x_average += vertices_[x].xpos;
       y_average += vertices_[x].ypos;
    }
@@ -213,7 +226,7 @@ void polygon::draw_border(const vertex& center, const rgbcolor& color)  {
    glBegin(GL_LINE_LOOP);
    glPolygonMode(GL_BACK, GL_LINE);
    glColor3ubv(ptr);
-   for (int num = 0; num < vertices.size(); num++) {
+   for (unsigned int num = 0; num < vertices.size(); num++) {
       x = (vertices_[num].xpos - x_average) + center.xpos;
       y = (vertices_[num].ypos - y_average) + center.ypos;
       glVertex2f(x, y);
@@ -246,4 +259,3 @@ ostream& operator<< (ostream& out, const shape& obj) {
    obj.show (out);
    return out;
 }
-

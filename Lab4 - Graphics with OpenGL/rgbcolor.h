@@ -31,4 +31,3 @@ ostream& operator<< (ostream&, const rgbcolor&);
 extern const std::unordered_map<std::string,rgbcolor> color_names;
 
 #endif
-

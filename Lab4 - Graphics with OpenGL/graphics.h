@@ -33,15 +33,22 @@ class object {
       string name;
    public:
       // Default copier, movers, dtor all OK.
-      object(string name_, shared_ptr<shape> ptr) : pshape(ptr), name(name_) {}
-      void set_new_center(vertex v) { center.xpos = v.xpos; center.ypos = v.ypos; }
+      object(string name_, shared_ptr<shape> ptr) 
+         : pshape(ptr), name(name_) {}
+      void set_new_center(vertex v) { 
+         center.xpos = v.xpos; center.ypos = v.ypos; }
       vertex get_center() { return center; }
-      void set_new_color(const rgbcolor& input) { color = input; border_color = input; }
-      void set_object_number(string num) { obj_number = make_shared<text>("Fixed-8x13", num); }
-      void draw_object_number() { obj_number->draw(center, text_color); }
+      void set_new_color(const rgbcolor& input) { 
+         color = input; border_color = input; }
+      void set_object_number(string num) { 
+         obj_number = make_shared<text>("Fixed-8x13", num); }
+      void draw_object_number() { 
+         obj_number->draw(center, text_color); }
       string get_name() { return name; }
       void draw() { pshape->draw(center, color); }
-      void draw_border() { pshape->draw_border(center, window_dimensions::border_color); }
+      void draw_border() { 
+         pshape->draw_border(center, 
+            window_dimensions::border_color); }
       void clear_border() { border_color = color; }
       void move (GLfloat delta_x, GLfloat delta_y);
 };
@@ -93,4 +100,3 @@ class window {
 };
 
 #endif
-

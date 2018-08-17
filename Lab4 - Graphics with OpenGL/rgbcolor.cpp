@@ -44,4 +44,3 @@ ostream& operator<< (ostream& out, const rgbcolor& color) {
    out << string (color);
    return out;
 }
-

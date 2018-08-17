@@ -44,9 +44,11 @@ void window::display() {
    int i = 0;
    string number;
    vertex bounds_vertex;
-   objects[selected_obj].draw(); //NEEDS TO BE HERE FOR TEXTOBJ BORDER TO RENDER
-   objects[selected_obj].draw_border(); //Sets the border around current selected object
-   cout << "Drawing selected object's border " << endl;
+   //NEEDS TO BE HERE FOR TEXT OBJECT BORDER TO RENDER
+   objects[selected_obj].draw();
+   //Sets the border around current selected object
+   objects[selected_obj].draw_border();
+   //cout << "Drawing selected object's border " << endl;
    for (auto& object: window::objects) {
       bounds_vertex = object.get_center();
       object.draw();
@@ -77,7 +79,7 @@ void window::reshape (int width, int height) {
 // Executed when a regular keyboard key is pressed.
 void window::keyboard (GLubyte key, int x, int y) {
 
-   cout << "moving by: " << pixels_to_move_by << " pixels" << endl;
+   //cout << "moving by: " << pixels_to_move_by << " pixels" << endl;
    //objects[selected_obj].draw_border();
    enum {BS = 8, TAB = 9, ESC = 27, SPACE = 32, DEL = 127};
    DEBUGF ('g', "key=" << unsigned (key) << ", x=" << x << ", y=" << y);
@@ -118,15 +120,17 @@ void window::keyboard (GLubyte key, int x, int y) {
          }
       case 'P': case 'p': case BS:
          {
+            unsigned int check = -1;
             --selected_obj;
-            if (selected_obj == -1)
+            if (selected_obj == check)
                selected_obj = objects.size() - 1;
             break;
          }
       case '0'...'9':
          {
             size_t temp_selected_obj = key - '0';
-            cout << "setting control to index: " << temp_selected_obj << endl << "objects size: " << objects.size() << endl;
+            //cout << "setting control to index: " << temp_selected_obj 
+            //<< endl << "objects size: " << objects.size() << endl;
            
             if(temp_selected_obj < objects.size())
             {
@@ -134,7 +138,8 @@ void window::keyboard (GLubyte key, int x, int y) {
             }
             else
             {
-               cerr << unsigned (key - '0') << ": invalid index selection" << endl;
+               cerr << unsigned (key - '0') 
+               << ": invalid index selection" << endl;
             }
             break;
          }
@@ -142,7 +147,7 @@ void window::keyboard (GLubyte key, int x, int y) {
          cerr << unsigned (key) << ": invalid keystroke" << endl;
          break;
    }
-   cout << "refreshing screen" << endl;
+   //cout << "refreshing screen" << endl;
    glClear(GL_DEPTH_BUFFER_BIT); 
    glutPostRedisplay();
 }
@@ -178,7 +183,8 @@ void window::special (int key, int x, int y) {
       case GLUT_KEY_F1: //select_object (1); break;
          {
             size_t temp_selected_obj = 1;
-            cout << "setting control to index: " << temp_selected_obj << endl << "objects size: " << objects.size() << endl;
+            //cout << "setting control to index: " << temp_selected_obj 
+            //<< endl << "objects size: " << objects.size() << endl;
            
             if(temp_selected_obj <= objects.size())
             {
@@ -193,7 +199,8 @@ void window::special (int key, int x, int y) {
       case GLUT_KEY_F2: //select_object (2); break;
          {
             size_t temp_selected_obj = 2;
-            cout << "setting control to index: " << temp_selected_obj << endl << "objects size: " << objects.size() << endl;
+            //cout << "setting control to index: " << temp_selected_obj 
+            //<< endl << "objects size: " << objects.size() << endl;
            
             if(temp_selected_obj <= objects.size())
             {
@@ -208,7 +215,8 @@ void window::special (int key, int x, int y) {
       case GLUT_KEY_F3: //select_object (3); break;
          {
             size_t temp_selected_obj = 3;
-            cout << "setting control to index: " << temp_selected_obj << endl << "objects size: " << objects.size() << endl;
+            //cout << "setting control to index: " << temp_selected_obj 
+            //<< endl << "objects size: " << objects.size() << endl;
            
             if(temp_selected_obj <= objects.size())
             {
@@ -223,7 +231,8 @@ void window::special (int key, int x, int y) {
       case GLUT_KEY_F4: //select_object (4); break;
          {
             size_t temp_selected_obj = 4;
-            cout << "setting control to index: " << temp_selected_obj << endl << "objects size: " << objects.size() << endl;
+            //cout << "setting control to index: " << temp_selected_obj 
+            //<< endl << "objects size: " << objects.size() << endl;
            
             if(temp_selected_obj <= objects.size())
             {
@@ -238,7 +247,8 @@ void window::special (int key, int x, int y) {
       case GLUT_KEY_F5: //select_object (5); break;
          {
             size_t temp_selected_obj = 5;
-            cout << "setting control to index: " << temp_selected_obj << endl << "objects size: " << objects.size() << endl;
+            //cout << "setting control to index: " << temp_selected_obj 
+            //<< endl << "objects size: " << objects.size() << endl;
            
             if(temp_selected_obj <= objects.size())
             {
@@ -253,7 +263,8 @@ void window::special (int key, int x, int y) {
       case GLUT_KEY_F6: //select_object (6); break;
          {
             size_t temp_selected_obj = 6;
-            cout << "setting control to index: " << temp_selected_obj << endl << "objects size: " << objects.size() << endl;
+            //cout << "setting control to index: " << temp_selected_obj 
+            //<< endl << "objects size: " << objects.size() << endl;
            
             if(temp_selected_obj <= objects.size())
             {
@@ -268,7 +279,8 @@ void window::special (int key, int x, int y) {
       case GLUT_KEY_F7: //select_object (7); break;
          {
             size_t temp_selected_obj = 7;
-            cout << "setting control to index: " << temp_selected_obj << endl << "objects size: " << objects.size() << endl;
+            //cout << "setting control to index: " << temp_selected_obj 
+            //<< endl << "objects size: " << objects.size() << endl;
            
             if(temp_selected_obj <= objects.size())
             {
@@ -283,7 +295,8 @@ void window::special (int key, int x, int y) {
       case GLUT_KEY_F8: //select_object (8); break;
          {
             size_t temp_selected_obj = 8;
-            cout << "setting control to index: " << temp_selected_obj << endl << "objects size: " << objects.size() << endl;
+            //cout << "setting control to index: " << temp_selected_obj 
+            //<< endl << "objects size: " << objects.size() << endl;
            
             if(temp_selected_obj <= objects.size())
             {
@@ -298,7 +311,8 @@ void window::special (int key, int x, int y) {
       case GLUT_KEY_F9: //select_object (9); break;
          {
             size_t temp_selected_obj = 9;
-            cout << "setting control to index: " << temp_selected_obj << endl << "objects size: " << objects.size() << endl;
+            //cout << "setting control to index: " << temp_selected_obj 
+            //<< endl << "objects size: " << objects.size() << endl;
            
             if(temp_selected_obj <= objects.size())
             {
@@ -313,7 +327,8 @@ void window::special (int key, int x, int y) {
       case GLUT_KEY_F10: //select_object (10); break;
          {
             size_t temp_selected_obj = 10;
-            cout << "setting control to index: " << temp_selected_obj << endl << "objects size: " << objects.size() << endl;
+            //cout << "setting control to index: " << temp_selected_obj 
+            //<< endl << "objects size: " << objects.size() << endl;
            
             if(temp_selected_obj <= objects.size())
             {
@@ -328,7 +343,8 @@ void window::special (int key, int x, int y) {
       case GLUT_KEY_F11: //select_object (11); break;
          {
             size_t temp_selected_obj = 11;
-            cout << "setting control to index: " << temp_selected_obj << endl << "objects size: " << objects.size() << endl;
+            //cout << "setting control to index: " << temp_selected_obj 
+            //<< endl << "objects size: " << objects.size() << endl;
            
             if(temp_selected_obj <= objects.size())
             {
@@ -343,7 +359,8 @@ void window::special (int key, int x, int y) {
       case GLUT_KEY_F12: //select_object (12); break;
          {
             size_t temp_selected_obj = 12;
-            cout << "setting control to index: " << temp_selected_obj << endl << "objects size: " << objects.size() << endl;
+            //cout << "setting control to index: " << temp_selected_obj 
+            //<< endl << "objects size: " << objects.size() << endl;
            
             if(temp_selected_obj <= objects.size())
             {
@@ -384,7 +401,7 @@ void window::mousefn (int button, int state, int x, int y) {
 
 void window::set_new_center(string obj_name, vertex v) {
 
-   for (int num = 0; num < objects.size(); num++) {
+   for (unsigned int num = 0; num < objects.size(); num++) {
       
       if (objects[num].get_name() == obj_name)
       {
@@ -395,7 +412,7 @@ void window::set_new_center(string obj_name, vertex v) {
 
 void window::set_color(string obj_name, const rgbcolor& color) {
 
-   for (int num = 0; num < objects.size(); num++) {
+   for (unsigned int num = 0; num < objects.size(); num++) {
       
    if (objects[num].get_name() == obj_name)
    {
@@ -405,7 +422,7 @@ void window::set_color(string obj_name, const rgbcolor& color) {
 }
 
 void window::main () {
-   cout << "CALLING WINDOW::MAIN" << endl;
+   //cout << "CALLING WINDOW::MAIN" << endl;
    static int argc = 0;
    glutInit (&argc, nullptr);
    glutInitDisplayMode (GLUT_RGBA | GLUT_DOUBLE);
@@ -453,19 +470,18 @@ void mouse::draw() {
 }
 
 void object::move (GLfloat delta_x, GLfloat delta_y) {
-
-         center.xpos += delta_x;
-         center.ypos += delta_y;
-         if (center.xpos == window_dimensions::window_width)
-         center.xpos = window_dimensions::pixels_move;
-         else if (center.xpos == 0) 
-         center.xpos = window_dimensions::window_width - window_dimensions::pixels_move;
-         else if (center.ypos == window_dimensions::window_height) 
-         center.ypos = window_dimensions::pixels_move;
-         else if (center.ypos == 0)
-         center.ypos = window_dimensions::window_height - window_dimensions::pixels_move;
-
-
-
-
+   center.xpos += delta_x;
+   center.ypos += delta_y;
+   if (center.xpos == window_dimensions::window_width)
+      center.xpos = window_dimensions::pixels_move;
+   else if (center.xpos == 0) 
+      center.xpos = 
+         window_dimensions::window_width
+            - window_dimensions::pixels_move;
+   else if (center.ypos == window_dimensions::window_height) 
+      center.ypos = window_dimensions::pixels_move;
+   else if (center.ypos == 0)
+      center.ypos = 
+         window_dimensions::window_height
+            - window_dimensions::pixels_move;
 }

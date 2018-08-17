@@ -144,4 +144,3 @@ class diamond: public polygon {
 ostream& operator<< (ostream& out, const shape&);
 
 #endif
-
