@@ -1,0 +1,79 @@
+==25308== Memcheck, a memory error detector
+==25308== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==25308== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==25308== Command: ./keyvalue test1.in test2.in test3.in
+==25308== 
+==25308== Warning: bad signal number 0 in sigaction()
+test1.in: 1: a=b
+a = b
+test1.in: 2: key=value
+key = value
+test1.in: 3: this=is a test
+this = is a test
+test1.in: 4: this
+this = is a test
+test1.in: 5: key
+key = value
+test1.in: 6: a
+a = b
+test1.in: 7: # $Id: test1.in,v 1.1 2016-06-28 14:48:38-07 - - $
+test2.in: 1: key=value
+key = value
+test2.in: 2: second=third
+second = third
+test2.in: 3: foo=bar
+foo = bar
+test2.in: 4: f1=51
+f1 = 51
+test2.in: 5: f2=52
+f2 = 52
+test2.in: 6: foobar=baz
+foobar = baz
+test2.in: 7: baz=quux
+baz = quux
+test2.in: 8: this=is=a=test
+this = is=a=test
+test2.in: 9: =
+a = b
+baz = quux
+f1 = 51
+f2 = 52
+foo = bar
+foobar = baz
+key = value
+second = third
+this = is=a=test
+test2.in: 10: a=value
+a = value
+test2.in: 11: b=value
+b = value
+test2.in: 12: =value
+a = value
+b = value
+key = value
+test2.in: 13: # $Id: test2.in,v 1.1 2016-06-28 14:48:38-07 - - $
+test3.in: 1: # Comments should be ignored
+test3.in: 2: 
+test3.in: 3: 
+test3.in: 4: also ignore blank lines
+also ignore blank lines: key not found
+test3.in: 5: this file contains nonexistent keys
+this file contains nonexistent keys: key not found
+test3.in: 6: all output should be error messages
+all output should be error messages: key not found
+test3.in: 7: # $Id: test3.in,v 1.1 2016-06-28 14:48:38-07 - - $
+==25308== 
+==25308== HEAP SUMMARY:
+==25308==     in use at exit: 335,244 bytes in 3,019 blocks
+==25308==   total heap usage: 7,018 allocs, 3,999 frees, 622,290 bytes allocated
+==25308== 
+==25308== LEAK SUMMARY:
+==25308==    definitely lost: 11,262 bytes in 19 blocks
+==25308==    indirectly lost: 323,982 bytes in 3,000 blocks
+==25308==      possibly lost: 0 bytes in 0 blocks
+==25308==    still reachable: 0 bytes in 0 blocks
+==25308==         suppressed: 0 bytes in 0 blocks
+==25308== Rerun with --leak-check=full to see details of leaked memory
+==25308== 
+==25308== For counts of detected and suppressed errors, rerun with: -v
+==25308== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
