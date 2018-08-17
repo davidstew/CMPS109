@@ -1,5 +1,9 @@
 =================================================================
-My implementation of the code is in Bigint.cpp and ubigint.cpp.
+My implementation of the code is in:
+
+	Bigint.cpp
+	ubigint.cpp
+	
 All other code was provided by instruction Wesley Mackey at UCSC
 =================================================================
 
