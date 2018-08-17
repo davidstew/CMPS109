@@ -1,4 +1,6 @@
-// $Id: main.cpp,v 1.54 2016-06-14 18:19:17-07 - - $
+// $Id: main.cpp,v 1.4 2017-07-06 23:27:29-07 - - $
+//By: David Stewart (daastewa@ucsc.edu) 
+//and Christopher Hahn (cnhahn@ucsc.edu)
 
 #include <cassert>
 #include <deque>
@@ -32,13 +34,23 @@ void do_arith (bigint_stack& stack, const char oper) {
       case '+': result = left + right; break;
       case '-': result = left - right; break;
       case '*': result = left * right; break;
-      case '/': result = left / right; break;
-      case '%': result = left % right; break;
+      case '/': result = left / right;  
+                if((right == (bigint(0))))
+                { 
+                  stack.push(left);
+                }
+                break;
+      case '%': result = left % right;
+                if((right == (bigint(0))))
+                { 
+                  stack.push(left);
+                }
+                break;
       case '^': result = pow (left, right); break;
       default: throw invalid_argument ("do_arith operator "s + oper);
    }
    DEBUGF ('d', "result = " << result);
-   stack.push (result);
+   stack.push (result);   
 }
 
 void do_clear (bigint_stack& stack, const char) {
@@ -46,23 +58,42 @@ void do_clear (bigint_stack& stack, const char) {
    stack.clear();
 }
 
+
 void do_dup (bigint_stack& stack, const char) {
-   bigint top = stack.top();
-   DEBUGF ('d', top);
-   stack.push (top);
+   if(stack.empty()){
+      cout << "ydc: stack empty" << endl;
+   }
+   else
+   {
+      bigint top = stack.top();
+      DEBUGF ('d', top);
+      stack.push (top);
+   }
 }
 
 void do_printall (bigint_stack& stack, const char) {
-   for (const auto& elem: stack) cout << elem << endl;
+   for (const auto& elem: stack)
+   {
+      cout << elem << endl;
+   }
 }
 
 void do_print (bigint_stack& stack, const char) {
-   cout << stack.top() << endl;
+   bigint minus(48);
+   bigint null(' ');
+   if(stack.empty())
+   {
+      cout << "ydc: stack empty" << endl;
+   }
+   else
+   {
+      cout << stack.top() << endl;
+   }
 }
 
 void do_debug (bigint_stack& stack, const char) {
    (void) stack; // SUPPRESS: warning: unused parameter 'stack'
-   cout << "Y not implemented" << endl;
+   cout << "ydc: 'Y' (0131) unimplemented" << endl;
 }
 
 class ydc_quit: public exception {};
@@ -87,9 +118,10 @@ fn_hash do_functions = {
    {"q"s, do_quit},
 };
 
+
 //
 // scan_options
-//    Options analysis:  The only option is -Dflags.
+//    Options analysis:  The only option is -Dflags. 
 //
 void scan_options (int argc, char** argv) {
    opterr = 0;
@@ -111,6 +143,7 @@ void scan_options (int argc, char** argv) {
    }
 }
 
+
 //
 // Main function.
 //
@@ -134,8 +167,9 @@ int main (int argc, char** argv) {
                   fn_hash::const_iterator fn
                            = do_functions.find (lexeme.lexinfo);
                   if (fn == do_functions.end()) {
-                     throw ydc_exn (octal (lexeme.lexinfo[0])
-                                    + " is unimplemented");
+                     throw ydc_exn ("ydc: '" + 
+                        octal (lexeme.lexinfo[0])
+                                    + "' unimplemented");
                   }
                   fn->second (operand_stack, lexeme.lexinfo.at(0));
                   break;
@@ -152,4 +186,3 @@ int main (int argc, char** argv) {
    }
    return exec::status();
 }
-

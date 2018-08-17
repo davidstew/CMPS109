@@ -1,5 +1,6 @@
-// $Id: util.h,v 1.1 2016-06-14 18:19:17-07 - - $
-
+// $Id: util.h,v 1.4 2017-07-06 23:27:29-07 - - $
+//By: David Stewart (daastewa@ucsc.edu) 
+//and Christopher Hahn (cnhahn@ucsc.edu)
 //
 // util -
 //    A utility class to provide various services
@@ -74,4 +75,3 @@ ostream& note();
 ostream& error();
 
 #endif
-

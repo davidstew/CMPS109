@@ -1,4 +1,6 @@
-// $Id: debug.cpp,v 1.8 2016-06-23 17:20:50-07 - - $
+// $Id: debug.cpp,v 1.5 2017-07-06 23:27:29-07 - - $
+//By: David Stewart (daastewa@ucsc.edu) 
+//and Christopher Hahn (cnhahn@ucsc.edu)
 
 #include <climits>
 #include <iostream>
@@ -37,4 +39,3 @@ void debugflags::where (char flag, const char* file, int line,
    note() << "DEBUG(" << flag << ") " << file << "[" << line << "] "
           << func << "()" << endl;
 }
-

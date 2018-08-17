@@ -1,4 +1,6 @@
-// $Id: debug.h,v 1.3 2015-07-01 18:52:26-07 - - $
+// $Id: debug.h,v 1.4 2017-07-06 23:27:29-07 - - $
+//By: David Stewart (daastewa@ucsc.edu) 
+//and Christopher Hahn (cnhahn@ucsc.edu)
 
 #ifndef __DEBUG_H__
 #define __DEBUG_H__
@@ -50,4 +52,3 @@ class debugflags {
            } \
         }
 #endif
-

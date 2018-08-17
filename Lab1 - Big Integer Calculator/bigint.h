@@ -1,4 +1,6 @@
-// $Id: bigint.h,v 1.29 2016-03-24 19:30:57-07 - - $
+// $Id: bigint.h,v 1.5 2017-07-06 23:27:29-07 - - $
+//By: David Stewart (daastewa@ucsc.edu) 
+//and Christopher Hahn (cnhahn@ucsc.edu)
 
 #ifndef __BIGINT_H__
 #define __BIGINT_H__
@@ -39,4 +41,3 @@ class bigint {
 };
 
 #endif
-

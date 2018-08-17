@@ -1,4 +1,6 @@
-// $Id: scanner.h,v 1.12 2016-06-23 17:22:50-07 - - $
+// $Id: scanner.h,v 1.4 2017-07-06 23:27:29-07 - - $
+//By: David Stewart (daastewa@ucsc.edu) 
+//and Christopher Hahn (cnhahn@ucsc.edu)
 
 #ifndef __SCANNER_H__
 #define __SCANNER_H__
@@ -34,4 +36,3 @@ ostream& operator<< (ostream&, tsymbol);
 ostream& operator<< (ostream&, const token&);
 
 #endif
-

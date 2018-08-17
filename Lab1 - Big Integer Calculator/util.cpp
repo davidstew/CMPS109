@@ -1,4 +1,6 @@
-// $Id: util.cpp,v 1.1 2016-06-14 18:19:17-07 - - $
+// $Id: util.cpp,v 1.4 2017-07-06 23:27:29-07 - - $
+//By: David Stewart (daastewa@ucsc.edu) 
+//and Christopher Hahn (cnhahn@ucsc.edu)
 
 #include <cstring>
 using namespace std;
@@ -31,4 +33,3 @@ ostream& error() {
    exec::status (EXIT_FAILURE);
    return note();
 }
-

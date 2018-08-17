@@ -1,4 +1,6 @@
-// $Id: scanner.cpp,v 1.19 2016-06-23 17:19:42-07 - - $
+// $Id: scanner.cpp,v 1.4 2017-07-06 23:27:29-07 - - $
+//By: David Stewart (daastewa@ucsc.edu) 
+//and Christopher Hahn (cnhahn@ucsc.edu)
 
 #include <cassert>
 #include <iostream>
@@ -47,4 +49,3 @@ ostream& operator<< (ostream& out, const token& token) {
    out << "{" << token.symbol << ", \"" << token.lexinfo << "\"}";
    return out;
 }
-

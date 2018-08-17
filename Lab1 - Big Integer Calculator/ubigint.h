@@ -1,5 +1,6 @@
-// $Id: ubigint.h,v 1.11 2016-03-24 19:43:57-07 - - $
-
+// $Id: ubigint.h,v 1.4 2017-07-06 23:27:29-07 - - $
+//By: David Stewart (daastewa@ucsc.edu) 
+//and Christopher Hahn (cnhahn@ucsc.edu)
 #ifndef __UBIGINT_H__
 #define __UBIGINT_H__
 
@@ -41,7 +42,4 @@ class ubigint {
       bool operator<  (const ubigint&) const;
 };
 
-//struct quo_rem { ubigint quotient; ubigint remainder; };
-
 #endif
-

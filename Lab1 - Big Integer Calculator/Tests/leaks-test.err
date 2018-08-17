@@ -1,0 +1,35 @@
+==7850== Memcheck, a memory error detector
+==7850== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==7850== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==7850== Command: ./ydc
+==7850== 
+==7850== Invalid read of size 1
+==7850==    at 0x40470E: ubigint::divide_by_2() (ubigint.cpp:362)
+==7850==    by 0x404AEC: ubigint::udivide(ubigint, ubigint) const (ubigint.cpp:430)
+==7850==    by 0x404CB9: ubigint::operator/(ubigint const&) const (ubigint.cpp:445)
+==7850==    by 0x4084F7: bigint::operator/(bigint const&) const (bigint.cpp:111)
+==7850==    by 0x40E267: do_arith(iterstack<bigint>&, char) (main.cpp:37)
+==7850==    by 0x40ECDE: main (main.cpp:174)
+==7850==  Address 0x5a1ac9f is 1 bytes before a block of size 3 alloc'd
+==7850==    at 0x4C29203: operator new(unsigned long) (vg_replace_malloc.c:334)
+==7850==    by 0x407839: __gnu_cxx::new_allocator<unsigned char>::allocate(unsigned long, void const*) (new_allocator.h:104)
+==7850==    by 0x4074F3: std::allocator_traits<std::allocator<unsigned char> >::allocate(std::allocator<unsigned char>&, unsigned long) (alloc_traits.h:491)
+==7850==    by 0x406D3F: std::_Vector_base<unsigned char, std::allocator<unsigned char> >::_M_allocate(unsigned long) (stl_vector.h:170)
+==7850==    by 0x4063ED: unsigned char* std::vector<unsigned char, std::allocator<unsigned char> >::_M_allocate_and_copy<__gnu_cxx::__normal_iterator<unsigned char const*, std::vector<unsigned char, std::allocator<unsigned char> > > >(unsigned long, __gnu_cxx::__normal_iterator<unsigned char const*, std::vector<unsigned char, std::allocator<unsigned char> > >, __gnu_cxx::__normal_iterator<unsigned char const*, std::vector<unsigned char, std::allocator<unsigned char> > >) (stl_vector.h:1224)
+==7850==    by 0x4059FB: std::vector<unsigned char, std::allocator<unsigned char> >::operator=(std::vector<unsigned char, std::allocator<unsigned char> > const&) (vector.tcc:195)
+==7850==    by 0x404529: ubigint::multiply_by_2() (ubigint.cpp:323)
+==7850==    by 0x4049E6: ubigint::udivide(ubigint, ubigint) const (ubigint.cpp:420)
+==7850==    by 0x404CB9: ubigint::operator/(ubigint const&) const (ubigint.cpp:445)
+==7850==    by 0x4084F7: bigint::operator/(bigint const&) const (bigint.cpp:111)
+==7850==    by 0x40E267: do_arith(iterstack<bigint>&, char) (main.cpp:37)
+==7850==    by 0x40ECDE: main (main.cpp:174)
+==7850== 
+==7850== 
+==7850== HEAP SUMMARY:
+==7850==     in use at exit: 0 bytes in 0 blocks
+==7850==   total heap usage: 352 allocs, 352 frees, 6,278 bytes allocated
+==7850== 
+==7850== All heap blocks were freed -- no leaks are possible
+==7850== 
+==7850== For counts of detected and suppressed errors, rerun with: -v
+==7850== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
