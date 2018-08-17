@@ -1,4 +1,4 @@
-Instructions for the program are provided in asg3-listmap-templates
+Instructions for the program are provided in asg3-listmap-templates.pdf
 
 =================================================================
 My implementation of the code is in:
