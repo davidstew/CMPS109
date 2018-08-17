@@ -1,8 +1,12 @@
 Instructions for the program are provided in asg3-listmap-templates
 
 =================================================================
-My implementation of the code is in interp.cpp graphics.h graphics.cpp
-shape.h shape.cpp
+My implementation of the code is in:
+
+	main.cpp
+	listmap.h
+	listmap.tcc
+	
 All other code was provided by instruction Wesley Mackey at UCSC
 =================================================================
 
@@ -13,5 +17,5 @@ This program assumes X11 Forwarding
 /Tests/mk.tests is a script which will test functionality of the program
 
 Each test consists of a:
-	*.gd file - input for the program to execute, image window will display on screen
-	*.gd.output - output of the program
+	test*.in - input for the program to execute
+	run*.* - output - output of the program
