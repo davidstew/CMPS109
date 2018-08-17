@@ -1,5 +1,8 @@
 // $Id: commands.h,v 1.11 2016-01-14 14:45:21-08 - - $
 
+//By: David Stewart (daastewa@ucsc.edu)
+//By: Christopher Hahn (cnhahn@ucsc.edu)
+
 #ifndef __COMMANDS_H__
 #define __COMMANDS_H__
 
@@ -14,12 +17,14 @@ using namespace std;
 using command_fn = void (*)(inode_state& state, const wordvec& words);
 using command_hash = unordered_map<string,command_fn>;
 using inode_ptr = shared_ptr<inode>;
+void fn_lsr_(inode_state& state, const wordvec& words);
 
 // command_error -
 //    Extend runtime_error for throwing exceptions related to this
 //    program.
 
-class command_error: public runtime_error {
+class command_error: public runtime_error 
+{
    public:
       explicit command_error (const string& what);
 };
@@ -38,7 +43,8 @@ void fn_prompt (inode_state& state, const wordvec& words);
 void fn_pwd    (inode_state& state, const wordvec& words);
 void fn_rm     (inode_state& state, const wordvec& words);
 void fn_rmr    (inode_state& state, const wordvec& words);
-void fn_ignore (inode_state& state, const wordvec& words); //added to the hash function to ignore comments
+//added to the hash function to ignore comments
+void fn_ignore (inode_state& state, const wordvec& words); 
 
 command_fn find_command_fn (const string& command);
 
@@ -50,4 +56,3 @@ int exit_status_message();
 class ysh_exit: public exception {};
 
 #endif
-

@@ -1,0 +1,8 @@
+pwd
+echo Hello World
+echo This is a very simple test.
+# This is a very simple test.
+# Are comments ignored?
+# It should not print a message like
+# yshell: #: no such function
+# $Id: test0.ysh,v 1.1 2013-01-02 19:11:43-08 - - $

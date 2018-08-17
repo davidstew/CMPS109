@@ -1,0 +1,2 @@
+yshell: this/mkdir/should/error/out/: No such file or directory
+yshell: make: cannot create file: directory exists

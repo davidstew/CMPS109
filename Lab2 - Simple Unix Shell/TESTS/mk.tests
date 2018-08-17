@@ -1,0 +1,17 @@
+#!/bin/bash
+# $Id: mk.tests,v 1.5 2015-04-17 13:21:16-07 - - $
+export PATH=$PATH:/afs/cats.ucsc.edu/courses/cmps012b-wm/bin
+ulimit -f 32
+ulimit -t 120
+
+PROG=./yshell
+
+for test in test*.ysh
+do
+   $PROG <$test 1>$test.out 2>$test.err
+   echo status = $? >$test.status
+done
+
+valgrind --leak-check=full $PROG <test2.ysh 1>grind.out 2>grind.err
+echo status = $? >grind.status
+

@@ -1,5 +1,7 @@
+// $Id: debug.h,v 1.2 2017-07-12 15:23:21-07 - - $
 
-// $Id: debug.h,v 1.7 2016-01-14 16:16:52-08 - - $
+//By: David Stewart (daastewa@ucsc.edu)
+//By: Christopher Hahn (cnhahn@ucsc.edu)
 
 #ifndef __DEBUG_H__
 #define __DEBUG_H__

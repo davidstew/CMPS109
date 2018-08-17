@@ -1,4 +1,7 @@
-// $Id: util.h,v 1.12 2016-01-14 16:16:52-08 - - $
+// $Id: util.h,v 1.2 2017-07-12 15:23:21-07 - - $
+
+//By: David Stewart (daastewa@ucsc.edu)
+//By: Christopher Hahn (cnhahn@ucsc.edu)
 
 // util -
 //    A utility class to provide various services not conveniently
@@ -49,9 +52,9 @@ class exit_status {
    public:
       static void set (int);
       static int get();
+      void exit(const wordvec& words);
 };
 
-
 // split -
 //    Split a string into a wordvec (as defined above).  Any sequence
 //    of chars in the delimiter string is used as a separator.  To
@@ -93,4 +96,3 @@ ostream& operator<< (ostream& out, range_type<iterator> range) {
 }
 
 #endif
-

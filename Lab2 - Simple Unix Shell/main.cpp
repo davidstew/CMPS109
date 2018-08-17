@@ -1,4 +1,7 @@
-// $Id: main.cpp,v 1.9 2016-01-14 16:16:52-08 - - $
+// $Id: main.cpp,v 1.2 2017-07-12 15:23:21-07 - - $
+
+//By: David Stewart (daastewa@ucsc.edu)
+//By: Christopher Hahn (cnhahn@ucsc.edu)
 
 #include <cstdlib>
 #include <iostream>
@@ -82,4 +85,3 @@ int main (int argc, char** argv) {
 
    return exit_status_message();
 }
-

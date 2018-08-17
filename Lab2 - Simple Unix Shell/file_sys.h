@@ -1,5 +1,8 @@
 // $Id: file_sys.h,v 1.5 2016-04-07 13:36:11-07 - - $
 
+//By: David Stewart (daastewa@ucsc.edu)
+//By: Christopher Hahn (cnhahn@ucsc.edu)
+
 #ifndef __INODE_H__
 #define __INODE_H__
 
@@ -60,7 +63,8 @@ class inode_state {
 //    number of words.
 //
 
-class inode {
+class inode 
+{
    friend class inode_state;
    private:
       static int next_inode_nr;
@@ -73,16 +77,23 @@ class inode {
       inode (file_type);
       int get_inode_nr() const;
       base_file_ptr getbase() { return contents; }
-      void print() { cout << "printing from inode" << endl; }
       int get_node_number() { return inode_nr; }
-      inode_ptr& getroot(inode_state& state) { state.getroot(); }
-      inode_ptr& getcwd (inode_state& state) { state.getcwd(); }
+      inode_ptr& getroot(inode_state& state) 
+      { 
+         return state.getroot();
+      }
+      inode_ptr& getcwd (inode_state& state) 
+      { 
+         return state.getcwd();
+      }
       inode_ptr& get_parent_pointer() { return this->parent; }
-      void set_parent_pointer(inode_ptr parent) {this->parent = parent; }
+      void set_parent_pointer(inode_ptr parent)
+      {
+         this->parent = parent; 
+      }
       void printPath() { cout << path; }
       string& getPath() { return path; }
-      string dirname;
-
+      //string dirname;
 };
 
 // class base_file -
@@ -108,10 +119,12 @@ class base_file {
       virtual void remove (const string& filename) = 0;
       virtual void mkdir (const string& dirname, inode_state&) = 0;
       virtual void mkfile (const string& filename) = 0;
-      virtual void print() = 0;
       virtual void print_dirents() = 0;
       virtual map<string,inode_ptr>& get_dirents() = 0;
       virtual string& getType() = 0;
+      virtual void decrement_directory_size() = 0;
+      virtual string get_name() = 0;
+      virtual void set_name(string) = 0;
 };
 
 // class plain_file -
@@ -134,10 +147,12 @@ class plain_file: public base_file {
       virtual void remove (const string& filename) override;
       virtual void mkdir (const string& dirname, inode_state&) override;
       virtual void mkfile (const string& filename) override;
-      virtual void print() { cout << "print from plain file class: " << data << endl; }
       virtual void print_dirents();
       virtual map<string,inode_ptr>& get_dirents();
       virtual string& getType() { return type; }
+      virtual void decrement_directory_size() {}
+      virtual string get_name() {}
+      virtual void set_name(string) {}
 };
 
 // class directory -
@@ -163,8 +178,10 @@ class directory: public base_file {
       // Must be a map, not unordered_map, so printing is lexicographic
       map<string,inode_ptr> dirents;
       string file_name = "";
+      string directory_name = "";
       int directory_size = 0;
       string type = "directory";
+
    public:
       virtual size_t size() const override;
       virtual void readfile(const string& input) const override;
@@ -172,11 +189,12 @@ class directory: public base_file {
       virtual void remove (const string& filename) override;
       virtual void mkdir (const string& dirname, inode_state&) override;
       virtual void mkfile (const string& filename) override;
-      virtual void print() { cout << "print from directory class" << endl; }
       virtual void print_dirents();
       virtual map<string,inode_ptr>& get_dirents();
       virtual string& getType() { return type; }
+      virtual void decrement_directory_size() { --directory_size; }
+      virtual string get_name() { return directory_name; }
+      virtual void set_name(string name) { directory_name = name; }
 };
 
 #endif
-

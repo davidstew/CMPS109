@@ -1,0 +1,79 @@
+./yshell build Jul 21 2017 02:59:02
+% mkdir foo
+% mkdir foo/bar
+% mkdir foo/bar/baz
+% make foo/bar/baz/file with this
+% mkdir this/mkdir/should/error/out
+% make foo/bar
+% # make foo/bar should fail because it is a directory
+% lsr /
+/:
+   1   3    .
+   1   3    ..
+   2   3    foo/
+/foo:
+   2   3    .
+   1   3    ..
+   3   3    bar/
+/foo/bar:
+   3   3    .
+   2   3    ..
+   4   3    baz/
+/foo/bar/baz:
+   4   3    .
+   3   3    ..
+   5   9    file
+% cd foo
+% make file8 nine ten eleven
+% cat file8
+nine ten eleven
+% cd /
+% lsr /
+/:
+   1   3    .
+   1   3    ..
+   2   4    foo/
+/foo:
+   2   4    .
+   1   3    ..
+   3   3    bar/
+   6   15    file8
+/foo/bar:
+   3   3    .
+   2   4    ..
+   4   3    baz/
+/foo/bar/baz:
+   4   3    .
+   3   3    ..
+   5   9    file
+% lsr foo foo/bar
+/foo:
+   2   4    .
+   1   3    ..
+   3   3    bar/
+   6   15    file8
+/foo/bar:
+   3   3    .
+   2   4    ..
+   4   3    baz/
+/foo/bar/baz:
+   4   3    .
+   3   3    ..
+   5   9    file
+/foo/bar:
+   3   3    .
+   2   4    ..
+   4   3    baz/
+/foo/bar/baz:
+   4   3    .
+   3   3    ..
+   5   9    file
+% rmr foo
+% lsr /
+/:
+   1   2    .
+   1   2    ..
+% # This tests decoding pathnames
+% # $Id: test4.ysh,v 1.1 2013-01-02 19:11:43-08 - - $
+% ^D
+yshell: exit(1)
