@@ -1,3 +1,6 @@
+
+Instructions for the program are provided in asg1-dc-bigint.pdf.
+
 =================================================================
 My implementation of the code is in:
 
